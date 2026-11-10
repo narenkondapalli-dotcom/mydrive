@@ -1,0 +1,255 @@
+{
+ "version": 1,
+ "colours": [
+  "White",
+  "Black",
+  "Grey",
+  "Silver",
+  "Blue",
+  "Red",
+  "Green",
+  "Bronze"
+ ],
+ "models": [
+  {
+   "make": "Jeep",
+   "model": "Meridian",
+   "note": "7-seater SUV",
+   "slug": "jeep-meridian"
+  },
+  {
+   "make": "Jeep",
+   "model": "Compass",
+   "note": "5-seater SUV",
+   "slug": "jeep-compass"
+  },
+  {
+   "make": "Mahindra",
+   "model": "XUV700",
+   "note": "SUV",
+   "slug": "mahindra-xuv700"
+  },
+  {
+   "make": "Mahindra",
+   "model": "Scorpio-N",
+   "note": "SUV",
+   "slug": "mahindra-scorpio-n"
+  },
+  {
+   "make": "Mahindra",
+   "model": "Thar Roxx",
+   "note": "SUV",
+   "slug": "mahindra-thar-roxx"
+  },
+  {
+   "make": "Mahindra",
+   "model": "XEV 9e",
+   "note": "Electric SUV",
+   "slug": "mahindra-xev-9e"
+  },
+  {
+   "make": "Mahindra",
+   "model": "BE 6",
+   "note": "Electric SUV",
+   "slug": "mahindra-be-6"
+  },
+  {
+   "make": "Tata",
+   "model": "Harrier",
+   "note": "SUV",
+   "slug": "tata-harrier"
+  },
+  {
+   "make": "Tata",
+   "model": "Safari",
+   "note": "7-seater SUV",
+   "slug": "tata-safari"
+  },
+  {
+   "make": "Tata",
+   "model": "Nexon",
+   "note": "Compact SUV",
+   "slug": "tata-nexon"
+  },
+  {
+   "make": "Tata",
+   "model": "Curvv",
+   "note": "Coupe SUV",
+   "slug": "tata-curvv"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Creta",
+   "note": "SUV",
+   "slug": "hyundai-creta"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Alcazar",
+   "note": "7-seater SUV",
+   "slug": "hyundai-alcazar"
+  },
+  {
+   "make": "Hyundai",
+   "model": "Verna",
+   "note": "Sedan",
+   "slug": "hyundai-verna"
+  },
+  {
+   "make": "Kia",
+   "model": "Seltos",
+   "note": "SUV",
+   "slug": "kia-seltos"
+  },
+  {
+   "make": "Kia",
+   "model": "Carens",
+   "note": "MPV",
+   "slug": "kia-carens"
+  },
+  {
+   "make": "Kia",
+   "model": "Sonet",
+   "note": "Compact SUV",
+   "slug": "kia-sonet"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Grand Vitara",
+   "note": "SUV",
+   "slug": "maruti-suzuki-grand-vitara"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Brezza",
+   "note": "Compact SUV",
+   "slug": "maruti-suzuki-brezza"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Swift",
+   "note": "Hatchback",
+   "slug": "maruti-suzuki-swift"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Baleno",
+   "note": "Hatchback",
+   "slug": "maruti-suzuki-baleno"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Dzire",
+   "note": "Sedan",
+   "slug": "maruti-suzuki-dzire"
+  },
+  {
+   "make": "Maruti Suzuki",
+   "model": "Ertiga",
+   "note": "MPV",
+   "slug": "maruti-suzuki-ertiga"
+  },
+  {
+   "make": "Toyota",
+   "model": "Fortuner",
+   "note": "7-seater SUV",
+   "slug": "toyota-fortuner"
+  },
+  {
+   "make": "Toyota",
+   "model": "Innova Hycross",
+   "note": "MPV",
+   "slug": "toyota-innova-hycross"
+  },
+  {
+   "make": "Toyota",
+   "model": "Hyryder",
+   "note": "SUV",
+   "slug": "toyota-hyryder"
+  },
+  {
+   "make": "Honda",
+   "model": "City",
+   "note": "Sedan",
+   "slug": "honda-city"
+  },
+  {
+   "make": "Honda",
+   "model": "Elevate",
+   "note": "SUV",
+   "slug": "honda-elevate"
+  },
+  {
+   "make": "Skoda",
+   "model": "Kylaq",
+   "note": "Compact SUV",
+   "slug": "skoda-kylaq"
+  },
+  {
+   "make": "Skoda",
+   "model": "Kushaq",
+   "note": "SUV",
+   "slug": "skoda-kushaq"
+  },
+  {
+   "make": "Skoda",
+   "model": "Slavia",
+   "note": "Sedan",
+   "slug": "skoda-slavia"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Taigun",
+   "note": "SUV",
+   "slug": "volkswagen-taigun"
+  },
+  {
+   "make": "Volkswagen",
+   "model": "Virtus",
+   "note": "Sedan",
+   "slug": "volkswagen-virtus"
+  },
+  {
+   "make": "MG",
+   "model": "Hector",
+   "note": "SUV",
+   "slug": "mg-hector"
+  },
+  {
+   "make": "MG",
+   "model": "Windsor EV",
+   "note": "Electric",
+   "slug": "mg-windsor-ev"
+  },
+  {
+   "make": "BMW",
+   "model": "X1",
+   "note": "Luxury SUV",
+   "slug": "bmw-x1"
+  },
+  {
+   "make": "BMW",
+   "model": "3 Series",
+   "note": "Luxury sedan",
+   "slug": "bmw-3-series"
+  },
+  {
+   "make": "Mercedes-Benz",
+   "model": "GLA",
+   "note": "Luxury SUV",
+   "slug": "mercedes-benz-gla"
+  },
+  {
+   "make": "Mercedes-Benz",
+   "model": "C-Class",
+   "note": "Luxury sedan",
+   "slug": "mercedes-benz-c-class"
+  },
+  {
+   "make": "Audi",
+   "model": "Q3",
+   "note": "Luxury SUV",
+   "slug": "audi-q3"
+  }
+ ]
+}

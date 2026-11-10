@@ -1,0 +1,16 @@
+# Xcode
+ios/MyDrive.xcodeproj/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.iml
+# tools
+tools/carrender/out/
+__pycache__/
+.DS_Store
