@@ -30,6 +30,8 @@ android {
 val copySharedAssets by tasks.registering(Copy::class) {
     from(rootProject.file("../shared/car-catalog.json"))
     from(rootProject.file("../shared/cars")) { into("cars") }
+    from(rootProject.file("../shared/briefing/greetings.json")) { into("briefing") }
+    from(rootProject.file("../shared/sounds/welcome")) { include("*.mp3"); into("sounds/welcome") }
     into(layout.buildDirectory.dir("generated/sharedAssets"))
 }
 tasks.named("preBuild") { dependsOn(copySharedAssets) }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import com.biolynk.mydrive.car.CarProfile
+import com.biolynk.mydrive.personal.BriefingItems
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.SettableFuture
 import java.io.File
@@ -13,7 +14,14 @@ import java.util.Locale
 /** Builds the spoken briefing and renders it to a WAV file with the phone's text-to-speech. */
 object Briefing {
 
-    fun text(profile: CarProfile?, now: LocalTime = LocalTime.now(), nextUp: String? = null): String {
+    /**
+     * [greeting] (from greetings.json) replaces the built-in hello; [items] gate the optional lines
+     * (calendar = [nextUp], usual stop, streak).
+     */
+    fun text(
+        profile: CarProfile?, now: LocalTime = LocalTime.now(), nextUp: String? = null,
+        greeting: String? = null, items: BriefingItems = BriefingItems(), usualStop: String? = null, streak: Int = 0,
+    ): String {
         val part = when {
             now.hour < 12 -> "Good morning"
             now.hour < 17 -> "Good afternoon"
@@ -21,9 +29,11 @@ object Briefing {
         }
         val name = profile?.ownerName.orEmpty()
         return buildList {
-            add(if (name.isBlank()) "$part." else "$part, $name.")
+            add(greeting ?: if (name.isBlank()) "$part." else "$part, $name.")
             profile?.let { add("Your ${it.displayName} is ready.") }
-            nextUp?.let { add("$it.") }
+            if (items.calendar) nextUp?.let { add("$it.") }
+            if (items.usualStop) usualStop?.let { add("$it.") }
+            if (items.streak && streak >= 2) add("Day $streak in a row.")
             add("Have a good drive.")
         }.joinToString(" ")
     }

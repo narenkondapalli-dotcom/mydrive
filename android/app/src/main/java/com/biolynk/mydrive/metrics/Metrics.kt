@@ -13,7 +13,8 @@ class Metrics(private val file: File, private val build: String = "1", private v
         WELCOME_STARTED("welcome_started"), WELCOME_FINISHED("welcome_finished"),
         BRIEFING_STARTED("briefing_started"), BRIEFING_FINISHED("briefing_finished"),
         HANDOFF_MUSIC("handoff_music"), WIDGET_RENDERED("widget_rendered"),
-        ONBOARDING_STEP("onboarding_step"), ONBOARDING_DONE("onboarding_done"), ERROR("error")
+        ONBOARDING_STEP("onboarding_step"), ONBOARDING_DONE("onboarding_done"), ERROR("error"),
+        LOVED_ONE_PLAYED("loved_one_played"), PROFILE_SWITCHED("profile_switched")
     }
 
     private val io = Executors.newSingleThreadExecutor()

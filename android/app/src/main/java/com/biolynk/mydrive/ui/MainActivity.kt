@@ -37,7 +37,16 @@ import androidx.media3.common.MediaItem
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.biolynk.mydrive.MyDriveApp
+import com.biolynk.mydrive.audio.ArtworkComposer
 import com.biolynk.mydrive.audio.PlaybackService
+import com.biolynk.mydrive.look.Accent
+import com.biolynk.mydrive.look.Scene
+import com.biolynk.mydrive.personal.DriveStats
+import com.biolynk.mydrive.personal.DriverProfile
+import com.biolynk.mydrive.personal.HomeStyle
+import com.biolynk.mydrive.personal.ProfileBook
+import java.time.LocalDate
+import java.time.LocalDateTime
 import com.biolynk.mydrive.car.CarColour
 import com.biolynk.mydrive.car.CarModel
 import com.biolynk.mydrive.car.CarProfile
@@ -53,12 +62,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme(colorScheme = darkColorScheme(primary = Gold, background = Bg, surface = Bg)) {
-                var profile by remember { mutableStateOf(app.store.loadProfile()) }
+            var book by remember { mutableStateOf(app.store.book()) }
+            var adding by remember { mutableStateOf(false) }
+            val active = book.active
+            val accent = Color(Accent.forPaint(active?.car?.colourName.orEmpty()))
+            MaterialTheme(colorScheme = darkColorScheme(primary = accent, background = Bg, surface = Bg)) {
                 Surface(Modifier.fillMaxSize(), color = Bg) {
-                    val p = profile
-                    if (p == null) Onboarding { saved -> app.store.saveProfile(saved); profile = saved }
-                    else Home(p, onPlay = ::playWelcome, onReset = { app.store.clearProfile(); profile = null })
+                    if (active == null || adding) {
+                        Onboarding(onCancel = if (active != null) ({ adding = false }) else null) { car ->
+                            book = app.store.addProfile(car); adding = false
+                        }
+                    } else {
+                        Home(book, onChange = { nb -> app.store.saveBook(nb); book = nb }, onPlay = ::playWelcome, onAdd = { adding = true })
+                    }
                 }
             }
         }
@@ -78,7 +94,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Onboarding(onDone: (CarProfile) -> Unit) {
+fun Onboarding(onCancel: (() -> Unit)? = null, onDone: (CarProfile) -> Unit) {
     val app = MyDriveApp.instance
     var step by remember { mutableIntStateOf(0) }
     var query by remember { mutableStateOf("") }
@@ -90,6 +106,7 @@ fun Onboarding(onDone: (CarProfile) -> Unit) {
 
     Column(Modifier.fillMaxSize().padding(22.dp)) {
         Text("STEP ${step + 1} OF 3", color = Gold, fontSize = 11.sp, letterSpacing = 3.sp)
+        onCancel?.let { TextButton(it) { Text("Cancel", color = Color.Gray) } }
         Spacer(Modifier.height(8.dp))
         when (step) {
             0 -> {
@@ -163,30 +180,65 @@ private fun Swatch(c: CarColour, selected: Boolean, onClick: () -> Unit) {
     }
 }
 
+
 @Composable
-fun Home(p: CarProfile, onPlay: () -> Unit, onReset: () -> Unit) {
+fun Home(book: ProfileBook, onChange: (ProfileBook) -> Unit, onPlay: () -> Unit, onAdd: () -> Unit) {
     val app = MyDriveApp.instance
+    val p = book.active ?: return
+    val accent = MaterialTheme.colorScheme.primary
     var log by remember { mutableStateOf(app.metrics.readAll()) }
     var welcome by remember { mutableStateOf(app.store.welcomeOnConnect) }
-    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(22.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-        app.store.carBitmap(p.slug, p.colourId)?.let {
-            Image(it.asImageBitmap(), null, Modifier.fillMaxWidth().height(200.dp).clip(RoundedCornerShape(20.dp)), contentScale = ContentScale.Crop)
+    var drives by remember(p.id) { mutableStateOf(app.store.driveLog(p.id).all()) }
+    fun edit(f: (DriverProfile) -> DriverProfile) = onChange(book.updateActive(f))
+    val now = LocalDateTime.now()
+    val greeting = remember(p.id, now.hour) { app.store.greetings.pick(now.hour, p.car.ownerName, now.dayOfYear) }
+    val art = remember(p.id, p.car.colourId, now.hour) {
+        ArtworkComposer.compose(app.store.carBitmap(p.car.slug, p.car.colourId), "Welcome back,",
+            p.car.ownerName.ifBlank { "Driver" }, side = 512, scene = Scene.at(now), accent = Accent.forPaint(p.car.colourName))
+    }
+
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(22.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        ProfileSwitcher(book, onSwitch = { id ->
+            app.metrics.log(Metrics.Event.PROFILE_SWITCHED, mapOf("from" to (book.active?.id ?: ""), "to" to id))
+            onChange(book.switchTo(id))
+        }, onAdd = onAdd)
+
+        if (p.style != HomeStyle.MINIMAL) {
+            val h = if (p.style == HomeStyle.CAR_LARGE) 220.dp else 130.dp
+            app.store.carBitmap(p.car.slug, p.car.colourId)?.let {
+                Image(it.asImageBitmap(), null, Modifier.fillMaxWidth().height(h).clip(RoundedCornerShape(20.dp)), contentScale = ContentScale.Crop)
+            }
         }
-        Text("Welcome back,", fontFamily = FontFamily.Serif, fontStyle = FontStyle.Italic, fontSize = 26.sp, color = Color.LightGray)
-        Text(p.ownerName.ifBlank { "Driver" }, fontSize = 52.sp, fontWeight = FontWeight.Thin, color = Color.White)
-        Text("${p.make} ${p.displayName} · ${p.colourName}", color = Gold, fontSize = 13.sp)
+        Text(greeting, fontFamily = FontFamily.Serif, fontStyle = FontStyle.Italic, fontSize = 22.sp, color = Color.LightGray)
+        Text(p.car.ownerName.ifBlank { "Driver" }, fontSize = if (p.style == HomeStyle.MINIMAL) 36.sp else 52.sp, fontWeight = FontWeight.Thin, color = Color.White)
+        Text("${p.car.make} ${p.car.displayName} · ${p.car.colourName}", color = accent, fontSize = 13.sp)
+        if (p.style == HomeStyle.STATS) {
+            Text("${DriveStats.streak(drives, LocalDate.now())} day streak · ${"%.0f".format(DriveStats.totalKm(drives))} km · ${drives.size} drives",
+                color = Color.White, fontSize = 15.sp)
+            DriveStats.usualStopNow(drives, System.currentTimeMillis())?.let { Text(it.line(), color = accent, fontSize = 14.sp) }
+        }
         Button(onPlay, Modifier.fillMaxWidth().height(54.dp), shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Gold, contentColor = Color.Black)) { Text("Test welcome") }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Welcome when Android Auto connects", Modifier.weight(1f), color = Color.White)
-            Switch(welcome, { welcome = it; app.store.welcomeOnConnect = it })
-        }
-        Text("Measurements", color = Gold, fontSize = 12.sp, letterSpacing = 2.sp)
+            colors = ButtonDefaults.buttonColors(containerColor = accent, contentColor = Color.Black)) { Text("Test welcome") }
+        ToggleRow("Welcome when Android Auto connects", welcome) { welcome = it; app.store.welcomeOnConnect = it }
+
+        SectionTitle("Look")
+        StylePicker(p.style) { s -> edit { it.copy(style = s) } }
+
+        BriefingItemsSection(p.items) { v -> edit { it.copy(items = v) } }
+        LovedOneSection(p) { v -> edit { it.copy(lovedOne = v) } }
+        RitualSection(p.ritual) { v -> edit { it.copy(ritual = v.normalised()) } }
+        DrivesSection(drives, onAdd = { d -> app.store.driveLog(p.id).add(d); drives = app.store.driveLog(p.id).all() },
+            onClear = { app.store.driveLog(p.id).clear(); drives = emptyList() })
+
+        SectionTitle("Car screen artwork")
+        Image(art.asImageBitmap(), null, Modifier.fillMaxWidth().aspectRatio(1f).clip(RoundedCornerShape(16.dp)))
+
+        SectionTitle("Measurements")
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             OutlinedButton({ log = app.metrics.readAll() }) { Text("Refresh") }
             OutlinedButton({ app.metrics.clear(); log = "" }) { Text("Clear") }
         }
-        Text(log.ifBlank { "No events yet" }, fontFamily = FontFamily.Monospace, fontSize = 10.sp, color = Color.Gray)
-        TextButton(onReset) { Text("Change car", color = Color(0xFFE57373)) }
+        MonoLog(log.ifBlank { "No events yet" })
+        TextButton({ onChange(book.remove(p.id)) }) { Text("Remove this car", color = Color(0xFFE57373)) }
     }
 }
