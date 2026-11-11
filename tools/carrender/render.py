@@ -34,7 +34,7 @@ _token = {"v": None, "t": 0}
 
 
 def token():
-    if not _token["v"] or time.time() - _token["t"] > 2400:
+    if not _token["v"] or time.time() - _token["t"] > 1500:
         gcloud = "gcloud.cmd" if sys.platform == "win32" else "gcloud"
         _token["v"] = subprocess.check_output([gcloud, "auth", "print-access-token"], text=True).strip()
         _token["t"] = time.time()
@@ -80,6 +80,8 @@ def render(model_key, car, colour, out_dir, retries=8):
         except urllib.error.HTTPError as e:
             msg = e.read().decode()[:300]
             log(out_dir, f"http{e.code} {path.name} {msg}")
+            if e.code == 401:  # token expired: force a fresh one and retry
+                _token["v"] = None; time.sleep(5); continue
             if e.code in (429, 500, 503):
                 time.sleep(min(30 * 2 ** attempt, 600)); continue
             return "fail"
