@@ -1,0 +1,6 @@
+{
+  "morning":   {"hours": [5, 11],  "lines": ["Good morning, {name}.", "Morning, {name}. Let's go.", "Rise and drive, {name}."]},
+  "afternoon": {"hours": [12, 16], "lines": ["Good afternoon, {name}.", "Afternoon, {name}. Ready when you are."]},
+  "evening":   {"hours": [17, 20], "lines": ["Good evening, {name}.", "Evening, {name}. Time to head home."]},
+  "night":     {"hours": [21, 4],  "lines": ["Good evening, {name}. Drive safe.", "Late one, {name}. Drive safe."]}
+}
