@@ -107,6 +107,7 @@ struct CarProfile: Codable, Equatable {
     var nickname: String
     var renderId: String?       // file name of the car picture in the App Group container
     var ownerName: String
+    var spokenName: String?     // optional respelling for the voice, e.g. "Moe-hit". nil or empty = ownerName
     var id: String = UUID().uuidString
     var ritual = Ritual()
     var briefingItems: Set<BriefingItem> = Set(BriefingItem.allCases)
@@ -114,6 +115,12 @@ struct CarProfile: Codable, Equatable {
     var widgetStyle: WidgetStyle = .carLarge
     var greetingIndex: Int?     // nil = rotate automatically
     var shortcutSteps: Set<Int> = []
+
+    /// What the voice says. The screen always shows `ownerName`.
+    var nameForSpeech: String {
+        let s = (spokenName ?? "").trimmingCharacters(in: .whitespaces)
+        return s.isEmpty ? ownerName : s
+    }
 
     var displayName: String { nickname.isEmpty ? model : nickname }
     var accentHex: String { Accent.hex(forPaint: colour) }
