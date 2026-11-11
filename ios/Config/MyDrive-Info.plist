@@ -13,6 +13,7 @@
 	<key>UIBackgroundModes</key><array><string>audio</string></array>
 	<key>NSCalendarsFullAccessUsageDescription</key><string>My Drive reads your first event of the day to include it in your drive briefing.</string>
 	<key>NSLocationWhenInUseUsageDescription</key><string>My Drive uses your location for weather and travel time in your briefing.</string>
+	<key>NSMicrophoneUsageDescription</key><string>Record a short voice line, up to 15 seconds, for someone you love. It stays on your phone and plays after your welcome chime.</string>
 	<key>NSCameraUsageDescription</key><string>Take a photo of your car to personalise your car screen.</string>
 	<key>NSPhotoLibraryUsageDescription</key><string>Pick a photo of your car to personalise your car screen.</string>
 	<key>UIApplicationSceneManifest</key>

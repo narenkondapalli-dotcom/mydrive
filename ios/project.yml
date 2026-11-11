@@ -21,6 +21,11 @@ targets:
       - path: ../shared/cars
         type: folder
         buildPhase: resources
+      - path: ../shared/sounds
+        type: folder
+        buildPhase: resources
+      - path: ../shared/briefing/greetings.json
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.biolynk.mydrive

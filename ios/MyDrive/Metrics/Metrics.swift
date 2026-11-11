@@ -11,6 +11,7 @@ final class Metrics {
         case briefingStarted = "briefing_started", briefingFinished = "briefing_finished"
         case handoffMusic = "handoff_music", widgetRendered = "widget_rendered"
         case onboardingStep = "onboarding_step", onboardingDone = "onboarding_done"
+        case profileSwitched = "profile_switched", lovedOnePlayed = "loved_one_played"
         case error
     }
 

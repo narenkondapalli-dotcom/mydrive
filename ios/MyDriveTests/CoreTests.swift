@@ -1,7 +1,7 @@
 import XCTest
 @testable import MyDrive
 
-final class CoreTests: XCTestCase {
+final class CoreTests: IsolatedStoreTestCase {
     func testProfileRoundTrip() throws {
         let p = CarProfile(make: "Jeep", model: "Meridian", colour: "White", roof: "Black", wheels: "Black",
                            nickname: "", renderId: nil, ownerName: "Mohit")

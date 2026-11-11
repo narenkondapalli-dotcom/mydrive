@@ -1,48 +1,79 @@
 import WidgetKit
 import SwiftUI
 
-/// CarPlay Dashboard / iPhone small widget: your car + what's next.
+/// CarPlay Dashboard / iPhone small widget: your car and what's next.
 /// Reads App Group files written with completeUntilFirstUserAuthentication so it works while the phone is locked.
+/// What it shows is decided by WidgetSnapshot (shared with the app, unit tested).
 struct NextUpEntry: TimelineEntry {
     let date: Date
-    let carName: String
-    let title: String
-    let detail: String
+    let snapshot: WidgetSnapshot
     let carImage: UIImage?
 }
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> NextUpEntry {
-        NextUpEntry(date: .now, carName: "Meridian", title: "Clinic 9:30", detail: "32 min", carImage: nil)
+        NextUpEntry(date: .now,
+                    snapshot: WidgetSnapshot(carName: "Meridian", title: "Clinic 9:30", detail: "32 min", style: .carLarge,
+                                             accentHex: Accent.fallbackHex, streak: 3, totalKm: 120, carImagePath: nil),
+                    carImage: nil)
     }
     func getSnapshot(in context: Context, completion: @escaping (NextUpEntry) -> Void) { completion(entry()) }
     func getTimeline(in context: Context, completion: @escaping (Timeline<NextUpEntry>) -> Void) {
-        completion(Timeline(entries: [entry()], policy: .after(.now.addingTimeInterval(15 * 60))))
+        completion(Timeline(entries: [entry()], policy: .after(WidgetSnapshot.refreshDate(after: .now))))
     }
     private func entry() -> NextUpEntry {
-        let p = SharedStore.loadProfile()
-        let n = SharedStore.loadNextUp()
-        let img = p.flatMap { SharedStore.carImageURL(for: $0) }.flatMap { UIImage(contentsOfFile: $0.path) }
-        return NextUpEntry(date: .now, carName: p?.displayName ?? "My Drive",
-                           title: n?.title ?? "Ready", detail: n?.detail ?? "Have a good drive", carImage: img)
+        let snap = WidgetSnapshot.load()
+        return NextUpEntry(date: .now, snapshot: snap, carImage: snap.carImagePath.flatMap { UIImage(contentsOfFile: $0) })
     }
 }
 
 struct MyDriveWidgetView: View {
     let entry: NextUpEntry
+
+    private var accent: Color { Color(hex: entry.snapshot.accentHex) }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            if let img = entry.carImage {
-                Image(uiImage: img).resizable().scaledToFill().frame(height: 54).clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+        content
+            .containerBackground(for: .widget) { Color.black }
+            .widgetURL(URL(string: "mydrive://today"))
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        let s = entry.snapshot
+        switch s.style {
+        case .carLarge:
+            VStack(alignment: .leading, spacing: 4) {
+                if let img = entry.carImage {
+                    Image(uiImage: img).resizable().scaledToFill().frame(height: 54).clipped()
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                nameLabel(s)
+                Text(s.title).font(.headline).lineLimit(1)
+                Text(s.detail).font(.caption).foregroundStyle(.secondary).lineLimit(1)
             }
-            Text(entry.carName.uppercased()).font(.system(size: 10, weight: .semibold)).kerning(1.5)
-                .foregroundStyle(Color(red: 0.83, green: 0.73, blue: 0.49))
-            Text(entry.title).font(.headline).lineLimit(1)
-            Text(entry.detail).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+        case .minimal:
+            VStack(alignment: .leading, spacing: 4) {
+                nameLabel(s)
+                Spacer()
+                Text(s.title).font(.title3.weight(.semibold)).lineLimit(2)
+                Text(s.detail).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        case .stats:
+            VStack(alignment: .leading, spacing: 4) {
+                nameLabel(s)
+                Spacer()
+                Text("\(s.streak)").font(.system(size: 38, weight: .ultraLight)).foregroundStyle(accent)
+                Text(s.streak == 1 ? "day streak" : "day streak").font(.caption2).foregroundStyle(.secondary)
+                Text("\(s.totalKm) km driven").font(.caption).lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .containerBackground(for: .widget) { Color.black }
-        .widgetURL(URL(string: "mydrive://today"))
+    }
+
+    private func nameLabel(_ s: WidgetSnapshot) -> some View {
+        Text(s.carName.uppercased()).font(.system(size: 10, weight: .semibold)).kerning(1.5).foregroundStyle(accent)
     }
 }
 

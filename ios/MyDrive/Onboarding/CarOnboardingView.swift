@@ -2,6 +2,7 @@ import SwiftUI
 
 /// Locked design (11 Nov 2026): 1) which car  2) which colour  3) meet your car.
 struct CarOnboardingView: View {
+    var onCancel: (() -> Void)?
     var onDone: (CarProfile) -> Void
 
     @State private var step = 0
@@ -14,7 +15,11 @@ struct CarOnboardingView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("STEP \(step + 1) OF 3").font(.caption).kerning(3).foregroundStyle(Theme.gold)
+            HStack {
+                Text("STEP \(step + 1) OF 3").font(.caption).kerning(3).foregroundStyle(Theme.gold)
+                Spacer()
+                if let onCancel { Button("Cancel", action: onCancel).font(.footnote) }
+            }
             Group {
                 switch step {
                 case 0: whichCar
@@ -107,7 +112,7 @@ struct CarOnboardingView: View {
         var profile = CarProfile(make: model.make, model: model.model, colour: colour.name, roof: colour.roof, wheels: "",
                                  nickname: nickname, renderId: nil, ownerName: ownerName)
         if let img = CarCatalog.renderImage(model: model, colour: colour), let data = img.jpegData(compressionQuality: 0.9) {
-            let id = "car-render.jpg"
+            let id = "car-render-\(profile.id).jpg"
             try? SharedStore.write(data, to: SharedStore.containerURL.appendingPathComponent(id))
             profile.renderId = id
         }
@@ -150,13 +155,5 @@ struct CarCatalog {
            let url = Bundle.main.url(forResource: "\(model.slug)--\(colour.id)", withExtension: "jpg", subdirectory: "cars"),
            let img = UIImage(contentsOfFile: url.path) { return img }
         return UIImage(named: "car-placeholder")
-    }
-}
-
-extension Color {
-    init(hex: String) {
-        var v: UInt64 = 0
-        Scanner(string: hex.trimmingCharacters(in: CharacterSet(charactersIn: "#"))).scanHexInt64(&v)
-        self.init(red: Double((v >> 16) & 0xFF) / 255, green: Double((v >> 8) & 0xFF) / 255, blue: Double(v & 0xFF) / 255)
     }
 }

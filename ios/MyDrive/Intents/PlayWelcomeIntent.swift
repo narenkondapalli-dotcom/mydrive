@@ -10,8 +10,7 @@ struct PlayWelcomeIntent: AudioPlaybackIntent {
     func perform() async throws -> some IntentResult {
         Metrics.shared.markConnect()
         Metrics.shared.log(.appLaunched, ["surface": "shortcut"])
-        DriveAudioEngine.shared.playWelcomeSequence(theme: UserDefaults(suiteName: SharedStore.appGroup)?
-            .string(forKey: "theme") ?? "signature", briefing: BriefingBuilder.build())
+        DriveAudioEngine.shared.playWelcomeSequence()
         return .result()
     }
 }
