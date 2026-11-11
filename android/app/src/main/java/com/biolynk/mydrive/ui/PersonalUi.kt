@@ -85,7 +85,8 @@ fun LovedOneSection(p: DriverProfile, onChange: (LovedOne) -> Unit) {
     }
 
     SectionTitle("Loved-one line")
-    OutlinedTextField(p.lovedOne.label, { onChange(p.lovedOne.copy(label = it.take(24))) }, Modifier.fillMaxWidth(),
+    var label by remember(p.id) { mutableStateOf(p.lovedOne.label) } // local state so fast typing is never dropped
+    OutlinedTextField(label, { label = it.take(24); onChange(p.lovedOne.copy(label = label)) }, Modifier.fillMaxWidth(),
         label = { Text("Label, e.g. Papa") }, singleLine = true)
     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         if (!recording) {
@@ -143,13 +144,13 @@ fun DrivesSection(drives: List<Drive>, onAdd: (Drive) -> Unit, onClear: () -> Un
             val labels = listOf("Home" to "Clinic", "Clinic" to "Home", "Home" to "Office", "Office" to "Gym")
             val (a, b) = labels[drives.size % labels.size]
             onAdd(Drive("sim-$now", now - 35 * 60_000L, now, 12.4, a, b))
-        }) { Text("Add simulated drive") }
+        }) { Text("Add drive") }
         OutlinedButton({
             val now = System.currentTimeMillis()
             val hour = java.time.LocalTime.now().hour
             (0..6).forEach { d -> onAdd(DriveStats.simulated(now, d, hour, "Home", "Clinic", 14.2, 32)) }
         }) { Text("Seed a week") }
-        TextButton(onClear) { Text("Clear", color = Color(0xFFE57373)) }
+        TextButton(onClear) { Text("Clear", color = Color(0xFFE57373), maxLines = 1, softWrap = false) }
     }
 }
 

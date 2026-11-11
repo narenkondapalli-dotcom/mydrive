@@ -33,3 +33,9 @@
 - [x] P4 ritual settings + multiple profiles (iOS)
 - [x] P5 accent from paint + time-of-day/season artwork (iOS)
 - [x] P6 widget/phone style options (iOS; Android Glance widget left)
+- [x] P2 greetings picker (greetings.json asset), briefing toggles, loved-one recorder (Android; verified on emulator, not in a car)
+- [x] P3 DriveLog + usual stops/streak/favourite route + Drives root + usual-stop briefing line + debug simulated drives (Android)
+- [x] P4 ritual (jarvis/warm/minimal clips by time of day, 0-5 s pause, voice on/off) + multiple profiles + switcher, `profile_switched` (Android)
+- [x] P5 accent from paint + time-of-day/season artwork scene (Android)
+- [x] P6 phone style options (car-large / minimal / stats) (Android) — [ ] Glance app widget skipped
+- [x] A8 Android build + 24 unit tests green, emulator onboarding + Test welcome verified; DHU steps in `docs/ANDROID-TESTING.md` — [ ] DHU run on a real phone
