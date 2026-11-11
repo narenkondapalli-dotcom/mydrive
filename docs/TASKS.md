@@ -26,3 +26,10 @@
 - [x] C1 5-car test: Pro vs 2.1 → 2.1 chosen (more accurate current faces, ~¼ cost)
 - [ ] C2 Full car library — 323 renders running on PC (D:\Projects\mydrive-assets\cars\nb21), then `prepare_app_assets.py` → `shared/cars/`
 - [ ] C3 Welcome theme sounds (3)
+
+## Personalization P1–P6 (spec in SPEC.md) — iOS + Android
+- [ ] P2 greetings, briefing item toggles, loved-one recording
+- [ ] P3 DriveLog + usual stops/streak/favourite route + Drives tab
+- [ ] P4 ritual settings + multiple profiles
+- [ ] P5 accent from paint + time-of-day/season artwork
+- [ ] P6 widget/phone style options
