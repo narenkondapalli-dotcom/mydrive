@@ -24,3 +24,7 @@ The CarPlay Simulator only exists on a Mac, so the Windows PC cannot run it. Cla
 
 ## Then
 Zip `~/mydrive-sim-results/` and `docs/CARPLAY-SIM-RESULTS.md` and send them to the PC session (AirDrop, Drive or `git add` on a branch). The PC session reads them and fixes what is broken, and CI checks each fix.
+
+## Xcode 27 note (found 11 Nov 2026)
+In Xcode 27.2 there is no `Simulator.app`. The Simulator window belongs to an app called **DeviceHub** (`open -a Simulator` fails). Drive its existing window; the CarPlay menu may be under a different name, so look through DeviceHub's menus for External Displays / CarPlay.
+Accessibility and Screen Recording grants only take effect after Terminal is quit (Cmd+Q) and reopened. Claude Code in Terminal had no computer-use tool, so it falls back to AppleScript (needs Accessibility). Using the Claude desktop app's Code tab with computer use is the alternative.
