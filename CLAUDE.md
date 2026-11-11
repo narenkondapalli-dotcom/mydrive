@@ -5,9 +5,11 @@ Full plan: Prototype Plan doc https://claude.ai/artifact/RReNj5c25y7qkbatvHWT8U 
 
 ## Layout
 - `ios/` — Swift, SwiftUI, XcodeGen (`ios/project.yml`). Build on the MacBook only. `brew install xcodegen && cd ios && xcodegen`, then open `MyDrive.xcodeproj`.
-- `android/` — Kotlin, Compose, Media3. Build on the Windows PC (SDK at `%LOCALAPPDATA%\Android\Sdk`, JDK 17).
+- `android/` — Kotlin, Compose, Media3, Gradle 8.11.1 wrapper. Builds green (11 Nov 2026, `./gradlew assembleDebug testDebugUnitTest`). Build/test on the Mac (Android Studio) or PC.
 - `shared/` — car catalogue JSON, briefing copy, welcome sounds (used by both apps).
-- `tools/carrender/` — car picture generator (Vertex AI, Nano Banana Pro). Never run without Mohit's OK on cost.
+- `tools/carrender/` — car picture generator (Vertex AI, Nano Banana 2.1 `gemini-nano-banana-2.1`, GCP credits). Full renders live outside Git in `D:/Projects/mydrive-assets/cars`; `prepare_app_assets.py` shrinks them into `shared/cars/` (bundled by both apps).
+- `tools/catalog/build_catalog.py` — builds `shared/car-catalog.json` (40 India models, 323 manufacturer colour options incl. dual-tone roofs).
+- Windows PC: everything lives on **D:** (`D:\Projects\mydrive`, Gradle cache `D:\DevCache\gradle`). C: is nearly full — never write big files there.
 
 ## IDs
 - iOS bundle `com.biolynk.mydrive`, widget `com.biolynk.mydrive.widget`, App Group `group.com.biolynk.mydrive`. Team: BIOLYNK TECHNOLOGIES PRIVATE LIMITED (WSLRC7P5X9).

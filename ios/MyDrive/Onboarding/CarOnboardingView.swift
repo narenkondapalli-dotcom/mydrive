@@ -7,9 +7,7 @@ struct CarOnboardingView: View {
     @State private var step = 0
     @State private var query = ""
     @State private var model: CarCatalog.Model?
-    @State private var colour = CarCatalog.colours[0]
-    @State private var roof = "Black"
-    @State private var wheels = "Black"
+    @State private var colour: CarCatalog.Colour?
     @State private var nickname = ""
     @State private var ownerName = ""
     private let catalog = CarCatalog.load()
@@ -42,11 +40,11 @@ struct CarOnboardingView: View {
             TextField("Search make or model", text: $query)
                 .padding(12).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
             List(catalog.search(query)) { m in
-                Button { model = m } label: {
+                Button { model = m; colour = m.colours.first } label: {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("\(m.make) \(m.model)")
-                            Text(m.note).font(.caption).foregroundStyle(.secondary)
+                            Text("\(m.note) · \(m.colours.count) colours").font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer()
                         if model == m { Image(systemName: "checkmark.circle.fill").foregroundStyle(Theme.gold) }
@@ -58,24 +56,31 @@ struct CarOnboardingView: View {
         }
     }
 
-    // MARK: Step 2
+    // MARK: Step 2 — the manufacturer's own colour list for this model
     private var whichColour: some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 14) {
             Text("What colour is it?").font(Theme.serif(32)).padding(.top, 8)
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 16) {
-                ForEach(CarCatalog.colours, id: \.name) { c in
-                    VStack(spacing: 6) {
-                        Circle().fill(c.color).frame(width: 46, height: 46)
-                            .overlay(Circle().stroke(colour.name == c.name ? Theme.gold : .clear, lineWidth: 2).padding(-4))
-                        Text(c.name).font(.caption).foregroundStyle(colour.name == c.name ? Theme.gold : .secondary)
+            Text("\(model?.make ?? "") \(model?.model ?? "") · official colours").font(.footnote).foregroundStyle(.secondary)
+            ScrollView {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 16) {
+                    ForEach(model?.colours ?? []) { c in
+                        VStack(spacing: 6) {
+                            ZStack(alignment: .top) {
+                                Circle().fill(Color(hex: c.hex))
+                                if c.roof != "body" {
+                                    Rectangle().fill(Color(white: 0.07)).frame(height: 13)
+                                }
+                            }
+                            .frame(width: 46, height: 46).clipShape(Circle())
+                            .overlay(Circle().stroke(colour == c ? Theme.gold : .clear, lineWidth: 2).padding(-4))
+                            Text(c.name).font(.caption2).multilineTextAlignment(.center).lineLimit(2)
+                                .foregroundStyle(colour == c ? Theme.gold : .secondary)
+                        }
+                        .onTapGesture { colour = c }
                     }
-                    .onTapGesture { colour = c }
                 }
             }
-            Picker("Roof", selection: $roof) { Text("Body colour").tag("Body"); Text("Black").tag("Black") }
-                .pickerStyle(.segmented)
-            Picker("Wheels", selection: $wheels) { Text("Silver").tag("Silver"); Text("Black").tag("Black") }
-                .pickerStyle(.segmented)
+            Text(colour?.label ?? "").font(.footnote).foregroundStyle(Theme.gold)
         }
     }
 
@@ -83,10 +88,10 @@ struct CarOnboardingView: View {
     private var meetCar: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Meet your \(model?.model ?? "car")").font(Theme.serif(32)).padding(.top, 8)
-            if let img = CarCatalog.renderImage(model: model, colour: colour.name) {
+            if let img = CarCatalog.renderImage(model: model, colour: colour) {
                 Image(uiImage: img).resizable().scaledToFill().frame(height: 200).clipped()
             }
-            Text("\(colour.name) · \(roof == "Black" ? "black roof" : "body-colour roof") · \(model?.note ?? "")")
+            Text("\(colour?.label ?? "") · \(model?.note ?? "")")
                 .font(.footnote).foregroundStyle(.secondary)
             TextField("Your name (for the greeting)", text: $ownerName)
                 .padding(12).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
@@ -98,37 +103,33 @@ struct CarOnboardingView: View {
 
     private func next() {
         if step < 2 { step += 1; return }
-        guard let model else { return }
-        var profile = CarProfile(make: model.make, model: model.model, colour: colour.name, roof: roof, wheels: wheels,
+        guard let model, let colour else { return }
+        var profile = CarProfile(make: model.make, model: model.model, colour: colour.name, roof: colour.roof, wheels: "",
                                  nickname: nickname, renderId: nil, ownerName: ownerName)
-        if let img = CarCatalog.renderImage(model: model, colour: colour.name), let data = img.jpegData(compressionQuality: 0.9) {
+        if let img = CarCatalog.renderImage(model: model, colour: colour), let data = img.jpegData(compressionQuality: 0.9) {
             let id = "car-render.jpg"
             try? SharedStore.write(data, to: SharedStore.containerURL.appendingPathComponent(id))
             profile.renderId = id
         }
         try? SharedStore.saveProfile(profile)
-        Metrics.shared.log(.onboardingDone, ["model": "\(model.make) \(model.model)", "colour": colour.name])
+        Metrics.shared.log(.onboardingDone, ["model": "\(model.make) \(model.model)", "colour": colour.id])
         onDone(profile)
     }
 }
 
-/// Car list + colours. Source of truth: shared/car-catalog.json (bundled as a resource).
+/// Car list + manufacturer colours. Source of truth: shared/car-catalog.json (bundled as a resource).
 struct CarCatalog {
-    struct Model: Codable, Identifiable, Equatable {
-        var id: String { make + "/" + model }
-        let make: String, model: String, note: String, slug: String
+    struct Colour: Codable, Identifiable, Hashable {
+        let id: String, name: String, hex: String, roof: String, label: String
     }
-    struct Swatch { let name: String; let color: Color }
+    struct Model: Codable, Identifiable, Equatable {
+        var id: String { slug }
+        let make: String, model: String, note: String, slug: String
+        let colours: [Colour]
+    }
     private struct File: Codable { let models: [Model] }
 
     let models: [Model]
-
-    static let colours: [Swatch] = [
-        .init(name: "White", color: Color(white: 0.95)), .init(name: "Black", color: Color(white: 0.08)),
-        .init(name: "Grey", color: Color(white: 0.43)), .init(name: "Silver", color: Color(white: 0.77)),
-        .init(name: "Blue", color: Color(red: 0.12, green: 0.23, blue: 0.4)), .init(name: "Red", color: Color(red: 0.49, green: 0.09, blue: 0.13)),
-        .init(name: "Green", color: Color(red: 0.18, green: 0.29, blue: 0.23)), .init(name: "Bronze", color: Color(red: 0.48, green: 0.35, blue: 0.23)),
-    ]
 
     static func load() -> CarCatalog {
         guard let url = Bundle.main.url(forResource: "car-catalog", withExtension: "json"),
@@ -143,9 +144,19 @@ struct CarCatalog {
         return models.filter { "\($0.make) \($0.model)".lowercased().contains(q) }
     }
 
-    /// Bundled render named `<slug>-<colour>.jpg` (e.g. jeep-meridian-white.jpg). Library generated by tools/carrender.
-    static func renderImage(model: Model?, colour: String) -> UIImage? {
-        guard let model else { return nil }
-        return UIImage(named: "\(model.slug)-\(colour.lowercased())") ?? UIImage(named: "car-placeholder")
+    /// Render `cars/<slug>--<colourId>.jpg` from the bundled library (generated by tools/carrender).
+    static func renderImage(model: Model?, colour: Colour?) -> UIImage? {
+        if let model, let colour,
+           let url = Bundle.main.url(forResource: "\(model.slug)--\(colour.id)", withExtension: "jpg", subdirectory: "cars"),
+           let img = UIImage(contentsOfFile: url.path) { return img }
+        return UIImage(named: "car-placeholder")
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        var v: UInt64 = 0
+        Scanner(string: hex.trimmingCharacters(in: CharacterSet(charactersIn: "#"))).scanHexInt64(&v)
+        self.init(red: Double((v >> 16) & 0xFF) / 255, green: Double((v >> 8) & 0xFF) / 255, blue: Double(v & 0xFF) / 255)
     }
 }

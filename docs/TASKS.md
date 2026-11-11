@@ -5,14 +5,14 @@
 - [x] iOS core sources (onboarding, car profile store, audio engine, CarPlay scene, widget, intents, metrics, debug) — written without a compiler; Mac must build
 - [x] Car catalogue sample + car render script (`tools/carrender/render.py`)
 
-## Claude Code — Windows PC (Android)
-- [ ] A1 Gradle project in `android/` (AGP + Kotlin + Compose, minSdk 29, target 36), wrapper committed, `assembleDebug` green
-- [ ] A2 `MediaLibraryService` + `MediaSession`, roots Today / Library / Drives; plays bundled welcome sound + TTS briefing
-- [ ] A3 `automotive_app_desc.xml`, manifest entries; app visible in Android Auto DHU
-- [ ] A4 `CarConnection` observer → `connect_detected` metric + welcome (if enabled)
-- [ ] A5 Compose onboarding (3 steps) + DataStore CarProfile, reading `shared/car-catalog.json`
-- [ ] A6 Metrics JSONL + debug screen + export
-- [ ] A7 Unit tests (CarProfile, metrics, catalogue parsing)
+## Android (written + built by Cowork 11 Nov 2026 — needs device/DHU testing on the Mac)
+- [x] A1 Gradle project (AGP 8.9.1, Kotlin 2.1.20, Compose, minSdk 29, target 36), wrapper, `assembleDebug` green
+- [x] A2 `MediaLibraryService` + `MediaSession`, roots Today / Library / Drives; welcome sound + TTS briefing queue; releases focus so music resumes
+- [x] A3 `automotive_app_desc.xml` + manifest — [ ] verify in Android Auto Desktop Head Unit
+- [x] A4 `CarConnection` observer + `onPlaybackResumption` welcome (if enabled) — [ ] verify on a real car / DHU
+- [x] A5 Compose onboarding (3 steps, manufacturer colours, real renders)
+- [x] A6 Metrics JSONL + on-screen viewer — [ ] add export/share
+- [x] A7 Unit tests (5 passing: catalogue, search, profile, metrics, briefing)
 
 ## Claude Code — MacBook (iOS)
 - [ ] I1 `brew install xcodegen`, `cd ios && xcodegen`, simulator build green
@@ -23,6 +23,6 @@
 - [ ] I6 Widget on simulator CarPlay Dashboard
 
 ## Cowork — next
-- [ ] C1 5-car test: Nano Banana Pro vs 2.1 on GCP credits
-- [ ] C2 Full car library (top 40 India models × 7 colours)
+- [x] C1 5-car test: Pro vs 2.1 → 2.1 chosen (more accurate current faces, ~¼ cost)
+- [ ] C2 Full car library — 323 renders running on PC (D:\Projects\mydrive-assets\cars\nb21), then `prepare_app_assets.py` → `shared/cars/`
 - [ ] C3 Welcome theme sounds (3)

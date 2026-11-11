@@ -26,7 +26,7 @@ PROMPT = (
     "background, low-key lighting with a warm golden rim light along the roofline and a soft cool key light on the "
     "body panels. Premium car-launch look. 16:9 frame, car in the right two-thirds, empty dark space on the left. "
     "Accurate body shape, grille, lights and proportions for this exact model. "
-    "No text, no people, no number plate text, no watermark."
+    "No number plate, no text, no people, no watermark."
 )
 
 _token = {"v": None, "t": 0}
@@ -94,12 +94,12 @@ def log(out_dir, line):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", choices=MODELS, default="pro")
+    ap.add_argument("--model", choices=MODELS, default="nb21")
     ap.add_argument("--test", action="store_true")
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--car", help="one model slug, e.g. jeep-meridian")
     ap.add_argument("--out", default="D:/Projects/mydrive-assets/cars")
-    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--workers", type=int, default=2)
     a = ap.parse_args()
     out = pathlib.Path(a.out)
     cars = {c["slug"]: c for c in CATALOG["models"]}

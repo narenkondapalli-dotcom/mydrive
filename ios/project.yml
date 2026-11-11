@@ -18,6 +18,9 @@ targets:
       - path: MyDrive
       - path: ../shared/car-catalog.json
         buildPhase: resources
+      - path: ../shared/cars
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.biolynk.mydrive

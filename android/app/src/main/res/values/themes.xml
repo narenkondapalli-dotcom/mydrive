@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.MyDrive" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#08090B</item>
+        <item name="android:statusBarColor">#08090B</item>
+        <item name="android:navigationBarColor">#08090B</item>
+    </style>
+</resources>
