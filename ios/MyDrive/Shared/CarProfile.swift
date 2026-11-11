@@ -37,6 +37,8 @@ enum SharedStore {
     }
 
     static func write(_ data: Data, to url: URL) throws {
+        // The fallback folder (Application Support) may not exist yet on a fresh install or in tests.
+        try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         try data.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
     }
 
