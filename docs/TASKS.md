@@ -18,9 +18,9 @@
 - [ ] I1 `brew install xcodegen`, `cd ios && xcodegen`, simulator build green
 - [ ] I2 Day-1 check: Simulator → I/O → External Displays → CarPlay shows My Drive with sim-only entitlement. Record result in the plan doc.
 - [ ] I3 Fix compile errors in Cowork-written sources; add unit tests (CarProfileStore, Metrics, ArtworkComposer)
-- [ ] I4 Bundle welcome sounds + car images into the app
-- [ ] I5 Shortcut setup helper screen
-- [ ] I6 Widget on simulator CarPlay Dashboard
+- [x] I4 Bundle welcome sounds + car images into the app (CI green: all 12 clips + bundled renders resolve; 39 tests, run 42971369722)
+- [x] I5 Shortcut setup helper screen (CI green; Shortcuts app opening is manual on device)
+- [x] I6 Widget builds, embeds, timeline logic unit-tested (CI green) — [ ] manual CarPlay Dashboard check on the Mac, steps in docs/IOS-TESTING.md
 
 ## Cowork — next
 - [x] C1 5-car test: Pro vs 2.1 → 2.1 chosen (more accurate current faces, ~¼ cost)
@@ -28,8 +28,8 @@
 - [ ] C3 Welcome theme sounds (3)
 
 ## Personalization P1–P6 (spec in SPEC.md) — iOS + Android
-- [ ] P2 greetings, briefing item toggles, loved-one recording
-- [ ] P3 DriveLog + usual stops/streak/favourite route + Drives tab
-- [ ] P4 ritual settings + multiple profiles
-- [ ] P5 accent from paint + time-of-day/season artwork
-- [ ] P6 widget/phone style options
+- [x] P2 greetings, briefing item toggles, loved-one recording (iOS; recording itself unverified on device)
+- [x] P3 DriveLog + usual stops/streak/favourite route + Drives tab (iOS)
+- [x] P4 ritual settings + multiple profiles (iOS)
+- [x] P5 accent from paint + time-of-day/season artwork (iOS)
+- [x] P6 widget/phone style options (iOS; Android Glance widget left)
