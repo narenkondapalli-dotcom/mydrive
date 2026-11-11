@@ -106,7 +106,7 @@ enum SpeechText {
         let ns = s as NSString
         var hits: [IPAHit] = []
         for (word, ipa) in ipaOverrides {
-            guard let re = try? NSRegularExpression(pattern: "\b\(NSRegularExpression.escapedPattern(for: word))\b", options: [.caseInsensitive]) else { continue }
+            guard let re = try? NSRegularExpression(pattern: "\\b\(NSRegularExpression.escapedPattern(for: word))\\b", options: [.caseInsensitive]) else { continue }
             for m in re.matches(in: s, range: NSRange(location: 0, length: ns.length)) {
                 hits.append(IPAHit(word: ns.substring(with: m.range), ipa: ipa, range: m.range))
             }
