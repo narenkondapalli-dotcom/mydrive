@@ -5,7 +5,11 @@ struct MyDriveApp: App {
     @StateObject private var model = AppModel()
     @State private var addingCar = false
 
-    init() { Metrics.shared.log(.appLaunched, ["surface": "phone"]) }
+    init() {
+        UITestSupport.configure()
+        Metrics.shared.log(.appLaunched, ["surface": "phone"])
+        Task { @MainActor in DriveAudioEngine.shared.prewarm() }
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -44,19 +48,25 @@ struct HomeView: View {
                         profileSwitcher(active: profile)
                         CarHero(profile: profile)
                         Text(greeting(for: profile)).font(Theme.serif(28)).italic().foregroundStyle(.secondary)
+                            .accessibilityIdentifier("home-greeting")
                         Text(profile.ownerName.isEmpty ? "Driver" : profile.ownerName).font(.system(size: 54, weight: .ultraLight))
+                            .accessibilityIdentifier("home-name")
                         Button {
                             Metrics.shared.markConnect()
-                            audio.playWelcomeSequence()
+                            audio.playWelcomeSequence(surface: "phone")
                         } label: {
                             Label(audio.stage == .idle ? "Test welcome" : "Playing \(audio.stage.rawValue)…", systemImage: "play.fill")
                                 .frame(maxWidth: .infinity).padding()
                                 .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 16)).foregroundStyle(.black)
                         }
+                        .accessibilityIdentifier("test-welcome")
+                        if let hint = VoiceChooser.hint(for: audio.voice) {
+                            Text(hint).font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("voice-hint")
+                        }
                         NavigationLink("Your ritual and look") { RitualSettingsView(model: model) }
                         NavigationLink("Set up “CarPlay connects” shortcut") { ShortcutHelpView(model: model) }
                         NavigationLink("Debug & measurements") { DebugView(model: model) }
-                        Button("Add another car", action: onAddCar)
+                        Button("Add another car", action: onAddCar).accessibilityIdentifier("add-car")
                         if model.book.profiles.count > 1 {
                             Button("Remove this car", role: .destructive) { model.removeActive() }
                         }
@@ -68,10 +78,10 @@ struct HomeView: View {
     }
 
     private func greeting(for profile: CarProfile) -> String {
-        let hour = Calendar.current.component(.hour, from: Date())
+        let hour = Calendar.current.component(.hour, from: AppClock.now)
         let book = GreetingBook.load() ?? .fallback
         let line = book.pick(hour: hour, name: "", index: profile.greetingIndex,
-                             seed: Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 0)
+                             seed: Calendar.current.ordinality(of: .day, in: .year, for: AppClock.now) ?? 0)
         return line.components(separatedBy: ".").first ?? line
     }
 

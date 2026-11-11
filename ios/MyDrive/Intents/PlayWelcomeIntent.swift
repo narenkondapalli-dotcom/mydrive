@@ -8,9 +8,13 @@ struct PlayWelcomeIntent: AudioPlaybackIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
+        // Each call is traced with the process uptime, so repeated runs (new process or same process) can be told apart in diagnostics.jsonl.
+        Diagnostics.shared.log("intent_perform", ["pid": Int(ProcessInfo.processInfo.processIdentifier),
+                                                  "process_uptime_ms": Int(ProcessInfo.processInfo.systemUptime * 1000)])
         Metrics.shared.markConnect()
         Metrics.shared.log(.appLaunched, ["surface": "shortcut"])
-        DriveAudioEngine.shared.playWelcomeSequence()
+        DriveAudioEngine.shared.prewarm()
+        DriveAudioEngine.shared.playWelcomeSequence(surface: "shortcut")
         return .result()
     }
 }

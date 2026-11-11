@@ -53,6 +53,16 @@ targets:
       - path: MyDriveTests
     dependencies:
       - target: MyDrive
+  MyDriveUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: MyDriveUITests
+    dependencies:
+      - target: MyDrive
+    settings:
+      base:
+        TEST_TARGET_NAME: MyDrive
 schemes:
   MyDrive:
     build:
@@ -61,3 +71,4 @@ schemes:
     test:
       targets:
         - MyDriveTests
+        - MyDriveUITests

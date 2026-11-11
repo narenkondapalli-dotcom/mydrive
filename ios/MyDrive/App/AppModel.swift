@@ -39,7 +39,7 @@ final class AppModel: ObservableObject {
 
     func addSimulatedDrive(_ kind: SimulatedDrive.Kind) {
         let existing = drives.filter { $0.endLabel == (kind == .usualStop ? "Clinic" : "Office") }.count
-        drives = DriveLogStore.add(SimulatedDrive.make(kind: kind, index: existing))
+        drives = DriveLogStore.add(SimulatedDrive.make(kind: kind, index: existing, now: AppClock.now))
         WidgetCenter.shared.reloadAllTimelines()
     }
 

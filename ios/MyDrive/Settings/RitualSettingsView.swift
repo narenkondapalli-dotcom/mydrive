@@ -10,6 +10,7 @@ struct RitualSettingsView: View {
     var body: some View {
         if let profile {
             Form {
+                nameSection(profile)
                 greetingSection(profile)
                 briefingSection(profile)
                 lovedOneSection(profile)
@@ -20,10 +21,26 @@ struct RitualSettingsView: View {
         }
     }
 
+    // MARK: Name
+
+    private func nameSection(_ p: CarProfile) -> some View {
+        Section {
+            TextField("How should I say your name?", text: Binding(
+                get: { p.spokenName ?? "" },
+                set: { v in model.updateActive { $0.spokenName = v.isEmpty ? nil : v } }),
+                prompt: Text(p.ownerName.isEmpty ? "Your name" : p.ownerName))
+                .accessibilityIdentifier("spoken-name")
+        } header: {
+            Text("Your name, spoken")
+        } footer: {
+            Text("Only the voice uses this. Type it the way it sounds, for example Moe-hit. Leave empty to use your name as it is.")
+        }
+    }
+
     // MARK: Greeting
 
     private func greetingSection(_ p: CarProfile) -> some View {
-        let hour = Calendar.current.component(.hour, from: Date())
+        let hour = Calendar.current.component(.hour, from: AppClock.now)
         let lines = (GreetingBook.load() ?? .fallback).lines(forHour: hour)
         return Section("Greeting") {
             Picker("Greeting", selection: Binding(get: { p.greetingIndex }, set: { v in model.updateActive { $0.greetingIndex = v } })) {
@@ -33,6 +50,7 @@ struct RitualSettingsView: View {
                 }
             }
             .pickerStyle(.inline)
+            .accessibilityIdentifier("greeting-picker")
         }
     }
 
@@ -44,6 +62,7 @@ struct RitualSettingsView: View {
                 Toggle(item.title, isOn: Binding(
                     get: { p.briefingItems.contains(item) },
                     set: { on in model.updateActive { if on { $0.briefingItems.insert(item) } else { $0.briefingItems.remove(item) } } }))
+                .accessibilityIdentifier("item-\(item.rawValue)")
             }
         } header: {
             Text("Briefing")
@@ -58,12 +77,14 @@ struct RitualSettingsView: View {
         Section {
             TextField("Who is it for? (for example Papa)", text: Binding(
                 get: { p.lovedOne.label }, set: { v in model.updateActive { $0.lovedOne.label = v } }))
+                .accessibilityIdentifier("loved-label")
             if recorder.state == .recording {
                 Button { recorder.stop() } label: {
                     Label(String(format: "Stop (%.0f of %.0f s)", recorder.elapsed, LovedOne.maxSeconds), systemImage: "stop.circle.fill")
                 }
             } else {
                 Button { record(p) } label: { Label(p.lovedOne.fileName == nil ? "Record" : "Record again", systemImage: "mic.fill") }
+                    .accessibilityIdentifier("loved-record")
             }
             if recorder.state == .denied {
                 Text("Microphone access is off. Allow it in Settings, then tap Record again.").font(.footnote).foregroundStyle(.secondary)
@@ -100,10 +121,17 @@ struct RitualSettingsView: View {
             Picker("Sound", selection: Binding(get: { p.ritual.theme }, set: { v in model.updateActive { $0.ritual.theme = v } })) {
                 ForEach(SoundTheme.allCases, id: \.self) { Text($0.title).tag($0) }
             }
+            .pickerStyle(.segmented)
+            .accessibilityIdentifier("theme-picker")
             Stepper("Pause before briefing: \(p.ritual.delaySeconds) s",
                     value: Binding(get: { p.ritual.delaySeconds }, set: { v in model.updateActive { $0.ritual.setDelay(v) } }),
                     in: Ritual.delayRange)
+                .accessibilityIdentifier("pause-stepper")
             Toggle("Spoken briefing", isOn: Binding(get: { p.ritual.voiceOn }, set: { v in model.updateActive { $0.ritual.voiceOn = v } }))
+                .accessibilityIdentifier("voice-toggle")
+            if let hint = VoiceChooser.hint(for: DriveAudioEngine.shared.voice) {
+                Text(hint).font(.footnote).foregroundStyle(.secondary)
+            }
         }
     }
 
@@ -115,6 +143,7 @@ struct RitualSettingsView: View {
                 ForEach(WidgetStyle.allCases, id: \.self) { Text($0.title).tag($0) }
             }
             .pickerStyle(.segmented)
+            .accessibilityIdentifier("widget-style-picker")
         } header: {
             Text("Widget")
         } footer: {

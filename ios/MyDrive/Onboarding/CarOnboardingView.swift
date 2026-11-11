@@ -32,6 +32,7 @@ struct CarOnboardingView: View {
                 .font(.headline).frame(maxWidth: .infinity).padding()
                 .background(Theme.gold, in: RoundedRectangle(cornerRadius: 16)).foregroundStyle(.black)
                 .disabled(step == 0 && model == nil)
+                .accessibilityIdentifier("onboarding-next")
         }
         .padding(22)
         .background(Theme.bg.ignoresSafeArea())
@@ -43,6 +44,7 @@ struct CarOnboardingView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Which car do you drive?").font(Theme.serif(32)).padding(.top, 8)
             TextField("Search make or model", text: $query)
+                .accessibilityIdentifier("car-search")
                 .padding(12).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
             List(catalog.search(query)) { m in
                 Button { model = m; colour = m.colours.first } label: {
@@ -99,10 +101,13 @@ struct CarOnboardingView: View {
             Text("\(colour?.label ?? "") · \(model?.note ?? "")")
                 .font(.footnote).foregroundStyle(.secondary)
             TextField("Your name (for the greeting)", text: $ownerName)
+                .accessibilityIdentifier("owner-name")
                 .padding(12).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
             TextField("Call it", text: $nickname, prompt: Text(model?.model ?? "Nickname"))
+                .accessibilityIdentifier("nickname")
                 .padding(12).background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 14))
             Button("Not quite right? Adjust") { step = 1 }.font(.footnote).foregroundStyle(.secondary)
+                .accessibilityIdentifier("adjust")
         }
     }
 

@@ -35,7 +35,7 @@ struct WidgetSnapshot: Equatable {
                               carImagePath: SharedStore.carImageURL(for: profile)?.path)
     }
 
-    static func load(now: Date = Date()) -> WidgetSnapshot {
+    static func load(now: Date = AppClock.now) -> WidgetSnapshot {
         make(profile: SharedStore.loadProfile(), nextUp: SharedStore.loadNextUp(), drives: DriveLogStore.load(), now: now)
     }
 }

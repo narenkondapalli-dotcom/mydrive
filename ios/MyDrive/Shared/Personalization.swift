@@ -37,11 +37,14 @@ struct Ritual: Codable, Equatable {
     static let delayRange = 0...5
 
     var theme: SoundTheme = .jarvis
-    private(set) var delaySeconds: Int = 1
+    /// Default 0: the clip flows straight into the briefing. (Stored under a new key, so an old stored 1 s default is dropped.)
+    private(set) var pauseSeconds: Int = 0
     var voiceOn: Bool = true
 
+    var delaySeconds: Int { pauseSeconds }
+
     mutating func setDelay(_ seconds: Int) {
-        delaySeconds = min(max(seconds, Self.delayRange.lowerBound), Self.delayRange.upperBound)
+        pauseSeconds = min(max(seconds, Self.delayRange.lowerBound), Self.delayRange.upperBound)
     }
 }
 

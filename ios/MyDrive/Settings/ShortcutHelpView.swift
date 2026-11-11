@@ -18,6 +18,8 @@ struct ShortcutHelpView: View {
                             Text("\(index + 1). \(text)").foregroundStyle(.primary).multilineTextAlignment(.leading)
                         }
                     }
+                    .accessibilityIdentifier("shortcut-step-\(index)")
+                    .accessibilityValue(setup.completed.contains(index) ? "done" : "todo")
                 }
             } footer: {
                 Text(setup.isComplete ? "All set. Your car will welcome you when it connects."
@@ -27,6 +29,7 @@ struct ShortcutHelpView: View {
                 Button { openURL(ShortcutSetup.shortcutsURL) } label: {
                     Label("Open Shortcuts", systemImage: "arrow.up.forward.app")
                 }
+                .accessibilityIdentifier("open-shortcuts")
             }
         }
         .navigationTitle("One-time setup")

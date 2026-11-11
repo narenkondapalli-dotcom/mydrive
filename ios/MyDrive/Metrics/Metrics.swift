@@ -12,6 +12,7 @@ final class Metrics {
         case handoffMusic = "handoff_music", widgetRendered = "widget_rendered"
         case onboardingStep = "onboarding_step", onboardingDone = "onboarding_done"
         case profileSwitched = "profile_switched", lovedOnePlayed = "loved_one_played"
+        case sequenceInterrupted = "sequence_interrupted", duplicateIgnored = "duplicate_ignored"
         case error
     }
 

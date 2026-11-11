@@ -11,7 +11,7 @@ on:
 jobs:
   build-and-test:
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -30,15 +30,69 @@ jobs:
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
           echo "Using simulator $UDID"
 
-      - name: Build and test (MyDrive scheme, simulator, no signing)
+      - name: Unit tests + UI tests (MyDrive scheme, simulator, no signing)
         working-directory: ios
         run: |
-          set -o pipefail
+          rm -rf /tmp/mydrive-ci-out /tmp/mydrive-uitest "$RUNNER_TEMP/result.xcresult"
+          mkdir -p /tmp/mydrive-ci-out
+          set +e
           xcodebuild test \
             -project MyDrive.xcodeproj \
             -scheme MyDrive \
             -destination "id=${{ steps.sim.outputs.udid }}" \
+            -resultBundlePath "$RUNNER_TEMP/result.xcresult" \
+            -parallel-testing-enabled NO \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM="" \
-            | tee "$RUNNER_TEMP/xcodebuild.log" | xcpretty || (grep -E "error:" "$RUNNER_TEMP/xcodebuild.log" | head -50; exit 1)
+            2>&1 | tee "$RUNNER_TEMP/xcodebuild.log" | xcpretty
+          STATUS=${PIPESTATUS[0]}
+          echo "XCODEBUILD_STATUS=$STATUS" >> "$GITHUB_ENV"
+          if [ "$STATUS" != "0" ]; then grep -E "error:|Test Case .* failed|XCTAssert" "$RUNNER_TEMP/xcodebuild.log" | head -80; fi
+          exit 0
+
+      - name: Collect artifacts (xcresult, screenshots, diagnostics, wavs)
+        if: always()
+        run: |
+          OUT="$RUNNER_TEMP/collected"
+          mkdir -p "$OUT/screenshots"
+          cp -R "$RUNNER_TEMP/result.xcresult" "$OUT/" 2>/dev/null || true
+          cp "$RUNNER_TEMP/xcodebuild.log" "$OUT/" 2>/dev/null || true
+          cp -R /tmp/mydrive-ci-out "$OUT/ci-out" 2>/dev/null || true
+          cp -R /tmp/mydrive-uitest "$OUT/last-uitest-container" 2>/dev/null || true
+          mkdir -p "$OUT/raw-attachments"
+          xcrun xcresulttool export attachments --path "$RUNNER_TEMP/result.xcresult" --output-path "$OUT/raw-attachments" 2>&1 | tail -5 || true
+          python3 - "$OUT" <<'PY' || true
+          import json, os, re, shutil, sys
+          out = sys.argv[1]
+          raw = os.path.join(out, "raw-attachments")
+          mf = os.path.join(raw, "manifest.json")
+          if os.path.exists(mf):
+              for t in json.load(open(mf)):
+                  tid = re.sub(r"[^A-Za-z0-9_.-]+", "_", t.get("testIdentifier", "test"))
+                  for a in t.get("attachments", []):
+                      src = os.path.join(raw, a["exportedFileName"])
+                      name = re.sub(r"[^A-Za-z0-9_.-]+", "_", a.get("suggestedHumanReadableName", a["exportedFileName"]))
+                      if os.path.exists(src):
+                          shutil.copy(src, os.path.join(out, "screenshots", f"{tid}__{name}"))
+          PY
+          ls "$OUT/screenshots" | head -100 || true
+          echo "===== speech manifest ====="
+          cat /tmp/mydrive-ci-out/speech/manifest.json 2>/dev/null || true
+          echo "===== diagnostics.jsonl (all UI tests) ====="
+          for f in /tmp/mydrive-ci-out/uitest/*/diagnostics.jsonl; do echo "--- $f"; cat "$f"; done 2>/dev/null | head -1500 || true
+          echo "===== xcresult test summary ====="
+          xcrun xcresulttool get test-results summary --path "$RUNNER_TEMP/result.xcresult" 2>&1 | head -120 || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ios-sim-run
+          path: ${{ runner.temp }}/collected
+          if-no-files-found: warn
+
+      - name: Fail the job if the tests failed
+        if: always()
+        run: |
+          echo "xcodebuild status: ${XCODEBUILD_STATUS:-unknown}"
+          [ "${XCODEBUILD_STATUS:-1}" = "0" ]
