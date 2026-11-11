@@ -350,7 +350,7 @@ final class BundleTests: XCTestCase {
         let catalog = CarCatalog.load()
         XCTAssertFalse(catalog.models.isEmpty, "catalogue is bundled")
         let dir = try XCTUnwrap(Bundle.main.url(forResource: "cars", withExtension: nil), "cars folder is bundled")
-        let files = try FileManager.default.contentsOfDirectory(at: dir, includesPropertiesForKeys: nil).filter { $0.pathExtension == "jpg" }
+        let files = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil).filter { $0.pathExtension == "jpg" }
         XCTAssertGreaterThan(files.count, 0)
         let known = Set(catalog.models.flatMap { m in m.colours.map { "\(m.slug)--\($0.id)" } })
         for f in files {
