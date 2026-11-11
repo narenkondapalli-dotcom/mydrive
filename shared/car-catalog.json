@@ -1,255 +1,2668 @@
 {
- "version": 1,
- "colours": [
-  "White",
-  "Black",
-  "Grey",
-  "Silver",
-  "Blue",
-  "Red",
-  "Green",
-  "Bronze"
- ],
+ "version": 2,
+ "collected": "2026-11-11",
+ "market": "IN",
  "models": [
   {
    "make": "Jeep",
    "model": "Meridian",
    "note": "7-seater SUV",
-   "slug": "jeep-meridian"
+   "slug": "jeep-meridian",
+   "source": "https://www.cardekho.com/jeep/meridian/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "galaxy-blue",
+     "name": "Galaxy Blue",
+     "hex": "#1F3A5F",
+     "roof": "body",
+     "label": "Galaxy Blue"
+    },
+    {
+     "id": "pearl-white",
+     "name": "Pearl White",
+     "hex": "#F2F2F0",
+     "roof": "body",
+     "label": "Pearl White"
+    },
+    {
+     "id": "brilliant-black",
+     "name": "Brilliant Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Brilliant Black"
+    },
+    {
+     "id": "minimal-grey",
+     "name": "Minimal Grey",
+     "hex": "#6E7173",
+     "roof": "body",
+     "label": "Minimal Grey"
+    },
+    {
+     "id": "techno-metallic-green",
+     "name": "Techno Metallic Green",
+     "hex": "#3E5A4A",
+     "roof": "body",
+     "label": "Techno Metallic Green"
+    },
+    {
+     "id": "velvet-red",
+     "name": "Velvet Red",
+     "hex": "#7A1F2B",
+     "roof": "body",
+     "label": "Velvet Red"
+    },
+    {
+     "id": "silvery-moon",
+     "name": "Silvery Moon",
+     "hex": "#B9BCBF",
+     "roof": "body",
+     "label": "Silvery Moon"
+    },
+    {
+     "id": "magnesio-grey",
+     "name": "Magnesio Grey",
+     "hex": "#5A5C5E",
+     "roof": "body",
+     "label": "Magnesio Grey"
+    }
+   ]
   },
   {
    "make": "Jeep",
    "model": "Compass",
    "note": "5-seater SUV",
-   "slug": "jeep-compass"
+   "slug": "jeep-compass",
+   "source": "https://www.cardekho.com/jeep/compass/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "grigio-magnesio",
+     "name": "Grigio Magnesio",
+     "hex": "#383838",
+     "roof": "body",
+     "label": "Grigio Magnesio"
+    },
+    {
+     "id": "galaxy-blue",
+     "name": "Galaxy Blue",
+     "hex": "#1F3A5F",
+     "roof": "body",
+     "label": "Galaxy Blue"
+    },
+    {
+     "id": "pearl-white",
+     "name": "Pearl White",
+     "hex": "#F2F2F0",
+     "roof": "body",
+     "label": "Pearl White"
+    },
+    {
+     "id": "brilliant-black",
+     "name": "Brilliant Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Brilliant Black"
+    },
+    {
+     "id": "exotica-red",
+     "name": "Exotica Red",
+     "hex": "#8A1C24",
+     "roof": "body",
+     "label": "Exotica Red"
+    },
+    {
+     "id": "techno-metallic-green",
+     "name": "Techno Metallic Green",
+     "hex": "#3E5A4A",
+     "roof": "body",
+     "label": "Techno Metallic Green"
+    },
+    {
+     "id": "silvery-moon",
+     "name": "Silvery Moon",
+     "hex": "#B9BCBF",
+     "roof": "body",
+     "label": "Silvery Moon"
+    }
+   ]
   },
   {
    "make": "Mahindra",
    "model": "XUV700",
    "note": "SUV",
-   "slug": "mahindra-xuv700"
+   "slug": "mahindra-xuv700",
+   "source": "https://www.cardekho.com/mahindra/xuv700/colors",
+   "remark": "Replaced by XUV 7XO in 2026; kept for existing owners.",
+   "colours": [
+    {
+     "id": "everest-white",
+     "name": "Everest White",
+     "hex": "#E3E5E9",
+     "roof": "body",
+     "label": "Everest White"
+    },
+    {
+     "id": "everest-white-black-roof",
+     "name": "Everest White",
+     "hex": "#E3E5E9",
+     "roof": "black",
+     "label": "Everest White · black roof"
+    },
+    {
+     "id": "valyrian-silver",
+     "name": "Valyrian Silver",
+     "hex": "#A9ADB1",
+     "roof": "body",
+     "label": "Valyrian Silver"
+    },
+    {
+     "id": "valyrian-silver-black-roof",
+     "name": "Valyrian Silver",
+     "hex": "#878C90",
+     "roof": "black",
+     "label": "Valyrian Silver · black roof"
+    },
+    {
+     "id": "stealth-black",
+     "name": "Stealth Black",
+     "hex": "#111214",
+     "roof": "body",
+     "label": "Stealth Black"
+    },
+    {
+     "id": "midnight-black",
+     "name": "Midnight Black",
+     "hex": "#1B1D22",
+     "roof": "body",
+     "label": "Midnight Black"
+    },
+    {
+     "id": "midnight-black-black-roof",
+     "name": "Midnight Black",
+     "hex": "#1B1D22",
+     "roof": "black",
+     "label": "Midnight Black · black roof"
+    },
+    {
+     "id": "deep-forest",
+     "name": "Deep Forest",
+     "hex": "#2E4A3A",
+     "roof": "body",
+     "label": "Deep Forest"
+    },
+    {
+     "id": "burnt-sienna",
+     "name": "Burnt Sienna",
+     "hex": "#8B4A2B",
+     "roof": "body",
+     "label": "Burnt Sienna"
+    }
+   ]
   },
   {
    "make": "Mahindra",
    "model": "Scorpio-N",
    "note": "SUV",
-   "slug": "mahindra-scorpio-n"
+   "slug": "mahindra-scorpio-n",
+   "source": "https://www.cardekho.com/mahindra/scorpio-n/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "everest-white",
+     "name": "Everest White",
+     "hex": "#D1D3D5",
+     "roof": "body",
+     "label": "Everest White"
+    },
+    {
+     "id": "galaxy-grey",
+     "name": "Galaxy Grey",
+     "hex": "#3A3B3F",
+     "roof": "body",
+     "label": "Galaxy Grey"
+    },
+    {
+     "id": "oceanic",
+     "name": "Oceanic",
+     "hex": "#2F5C6E",
+     "roof": "body",
+     "label": "Oceanic"
+    },
+    {
+     "id": "stealth-black",
+     "name": "Stealth Black",
+     "hex": "#111214",
+     "roof": "body",
+     "label": "Stealth Black"
+    },
+    {
+     "id": "deep-forest",
+     "name": "Deep Forest",
+     "hex": "#2E4A3A",
+     "roof": "body",
+     "label": "Deep Forest"
+    }
+   ]
   },
   {
    "make": "Mahindra",
    "model": "Thar Roxx",
    "note": "SUV",
-   "slug": "mahindra-thar-roxx"
+   "slug": "mahindra-thar-roxx",
+   "source": "https://www.cardekho.com/mahindra/thar-roxx/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "everest-white",
+     "name": "Everest White",
+     "hex": "#EAEBEE",
+     "roof": "body",
+     "label": "Everest White"
+    },
+    {
+     "id": "stealth-black",
+     "name": "Stealth Black",
+     "hex": "#0E0F0B",
+     "roof": "body",
+     "label": "Stealth Black"
+    },
+    {
+     "id": "nebula-blue",
+     "name": "Nebula Blue",
+     "hex": "#1F3550",
+     "roof": "body",
+     "label": "Nebula Blue"
+    },
+    {
+     "id": "battleship-grey",
+     "name": "Battleship Grey",
+     "hex": "#5B5F63",
+     "roof": "body",
+     "label": "Battleship Grey"
+    },
+    {
+     "id": "deep-forest",
+     "name": "Deep Forest",
+     "hex": "#2E4A3A",
+     "roof": "body",
+     "label": "Deep Forest"
+    },
+    {
+     "id": "tango-red",
+     "name": "Tango Red",
+     "hex": "#B3262E",
+     "roof": "body",
+     "label": "Tango Red"
+    },
+    {
+     "id": "burnt-sienna",
+     "name": "Burnt Sienna",
+     "hex": "#8B4A2B",
+     "roof": "body",
+     "label": "Burnt Sienna"
+    },
+    {
+     "id": "citrine-yellow",
+     "name": "Citrine Yellow",
+     "hex": "#D9B93A",
+     "roof": "body",
+     "label": "Citrine Yellow"
+    }
+   ]
   },
   {
    "make": "Mahindra",
    "model": "XEV 9e",
    "note": "Electric SUV",
-   "slug": "mahindra-xev-9e"
+   "slug": "mahindra-xev-9e",
+   "source": "https://www.cardekho.com/mahindra/xev-9e/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "everest-white",
+     "name": "Everest White",
+     "hex": "#F5F5F5",
+     "roof": "body",
+     "label": "Everest White"
+    },
+    {
+     "id": "satin-white",
+     "name": "Satin White",
+     "hex": "#EEEEEB",
+     "roof": "body",
+     "label": "Satin White"
+    },
+    {
+     "id": "desert-myst",
+     "name": "Desert Myst",
+     "hex": "#B8AE9C",
+     "roof": "body",
+     "label": "Desert Myst"
+    },
+    {
+     "id": "satin-desert-myst",
+     "name": "Satin Desert Myst",
+     "hex": "#C0BEB7",
+     "roof": "body",
+     "label": "Satin Desert Myst"
+    },
+    {
+     "id": "ruby-velvet",
+     "name": "Ruby Velvet",
+     "hex": "#8A2C36",
+     "roof": "body",
+     "label": "Ruby Velvet"
+    },
+    {
+     "id": "stealth-black",
+     "name": "Stealth Black",
+     "hex": "#111214",
+     "roof": "body",
+     "label": "Stealth Black"
+    },
+    {
+     "id": "satin-black",
+     "name": "Satin Black",
+     "hex": "#1A1A1C",
+     "roof": "body",
+     "label": "Satin Black"
+    },
+    {
+     "id": "nebula-blue",
+     "name": "Nebula Blue",
+     "hex": "#1F3550",
+     "roof": "body",
+     "label": "Nebula Blue"
+    },
+    {
+     "id": "deep-forest",
+     "name": "Deep Forest",
+     "hex": "#2E4A3A",
+     "roof": "body",
+     "label": "Deep Forest"
+    },
+    {
+     "id": "tango-red",
+     "name": "Tango Red",
+     "hex": "#B3262E",
+     "roof": "body",
+     "label": "Tango Red"
+    }
+   ]
   },
   {
    "make": "Mahindra",
    "model": "BE 6",
    "note": "Electric SUV",
-   "slug": "mahindra-be-6"
+   "slug": "mahindra-be-6",
+   "source": "https://www.cardekho.com/mahindra/be-6/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "everest-white",
+     "name": "Everest White",
+     "hex": "#E3E5E9",
+     "roof": "body",
+     "label": "Everest White"
+    },
+    {
+     "id": "everest-white-satin",
+     "name": "Everest White Satin",
+     "hex": "#E3E5E9",
+     "roof": "body",
+     "label": "Everest White Satin"
+    },
+    {
+     "id": "ruby-velvet",
+     "name": "Ruby Velvet",
+     "hex": "#8A4245",
+     "roof": "body",
+     "label": "Ruby Velvet"
+    },
+    {
+     "id": "graphite-storm",
+     "name": "Graphite Storm",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Graphite Storm"
+    },
+    {
+     "id": "stealth-black",
+     "name": "Stealth Black",
+     "hex": "#111214",
+     "roof": "body",
+     "label": "Stealth Black"
+    },
+    {
+     "id": "satin-black",
+     "name": "Satin Black",
+     "hex": "#1A1A1C",
+     "roof": "body",
+     "label": "Satin Black"
+    },
+    {
+     "id": "desert-myst",
+     "name": "Desert Myst",
+     "hex": "#B8AE9C",
+     "roof": "body",
+     "label": "Desert Myst"
+    },
+    {
+     "id": "firestorm-orange",
+     "name": "Firestorm Orange",
+     "hex": "#E0622B",
+     "roof": "body",
+     "label": "Firestorm Orange"
+    },
+    {
+     "id": "firestorm-orange-satin",
+     "name": "Firestorm Orange Satin",
+     "hex": "#E0622B",
+     "roof": "body",
+     "label": "Firestorm Orange Satin"
+    },
+    {
+     "id": "rosso-impulso-satin",
+     "name": "Rosso Impulso Satin",
+     "hex": "#A3262E",
+     "roof": "body",
+     "label": "Rosso Impulso Satin"
+    },
+    {
+     "id": "deep-forest",
+     "name": "Deep Forest",
+     "hex": "#2E4A3A",
+     "roof": "body",
+     "label": "Deep Forest"
+    },
+    {
+     "id": "tango-red",
+     "name": "Tango Red",
+     "hex": "#B3262E",
+     "roof": "body",
+     "label": "Tango Red"
+    }
+   ]
   },
   {
    "make": "Tata",
    "model": "Harrier",
    "note": "SUV",
-   "slug": "tata-harrier"
+   "slug": "tata-harrier",
+   "source": "https://www.cardekho.com/tata/harrier/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pristine-white",
+     "name": "Pristine White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Pristine White"
+    },
+    {
+     "id": "pristine-white-black-roof",
+     "name": "Pristine White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Pristine White · black roof"
+    },
+    {
+     "id": "nitro-crimson-black-roof",
+     "name": "Nitro Crimson",
+     "hex": "#841E33",
+     "roof": "black",
+     "label": "Nitro Crimson · black roof"
+    },
+    {
+     "id": "seaweed-green",
+     "name": "Seaweed Green",
+     "hex": "#556034",
+     "roof": "body",
+     "label": "Seaweed Green"
+    },
+    {
+     "id": "seaweed-green-black-roof",
+     "name": "Seaweed Green",
+     "hex": "#556034",
+     "roof": "black",
+     "label": "Seaweed Green · black roof"
+    },
+    {
+     "id": "sunlit-yellow-black-roof",
+     "name": "Sunlit Yellow",
+     "hex": "#E0B43A",
+     "roof": "black",
+     "label": "Sunlit Yellow · black roof"
+    },
+    {
+     "id": "fearless-red",
+     "name": "Fearless Red",
+     "hex": "#B3262E",
+     "roof": "body",
+     "label": "Fearless Red"
+    },
+    {
+     "id": "fearless-red-black-roof",
+     "name": "Fearless Red",
+     "hex": "#B3262E",
+     "roof": "black",
+     "label": "Fearless Red · black roof"
+    },
+    {
+     "id": "daytona-grey",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "body",
+     "label": "Daytona Grey"
+    },
+    {
+     "id": "daytona-grey-black-roof",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "black",
+     "label": "Daytona Grey · black roof"
+    },
+    {
+     "id": "pure-grey",
+     "name": "Pure Grey",
+     "hex": "#8A8D90",
+     "roof": "body",
+     "label": "Pure Grey"
+    },
+    {
+     "id": "pure-grey-black-roof",
+     "name": "Pure Grey",
+     "hex": "#8A8D90",
+     "roof": "black",
+     "label": "Pure Grey · black roof"
+    },
+    {
+     "id": "oberon-black",
+     "name": "Oberon Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Oberon Black"
+    },
+    {
+     "id": "matte-stealth-black",
+     "name": "Matte Stealth Black",
+     "hex": "#15161A",
+     "roof": "body",
+     "label": "Matte Stealth Black"
+    }
+   ]
   },
   {
    "make": "Tata",
    "model": "Safari",
    "note": "7-seater SUV",
-   "slug": "tata-safari"
+   "slug": "tata-safari",
+   "source": "https://www.cardekho.com/tata/safari/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "frost-white",
+     "name": "Frost White",
+     "hex": "#F2F2F0",
+     "roof": "body",
+     "label": "Frost White"
+    },
+    {
+     "id": "frost-white-black-roof",
+     "name": "Frost White",
+     "hex": "#F2F2F0",
+     "roof": "black",
+     "label": "Frost White · black roof"
+    },
+    {
+     "id": "cosmic-gold",
+     "name": "Cosmic Gold",
+     "hex": "#B08D57",
+     "roof": "body",
+     "label": "Cosmic Gold"
+    },
+    {
+     "id": "cosmic-gold-black-roof",
+     "name": "Cosmic Gold",
+     "hex": "#B08D57",
+     "roof": "black",
+     "label": "Cosmic Gold · black roof"
+    },
+    {
+     "id": "supernova-copper",
+     "name": "Supernova Copper",
+     "hex": "#9C5B3A",
+     "roof": "body",
+     "label": "Supernova Copper"
+    },
+    {
+     "id": "supernova-copper-black-roof",
+     "name": "Supernova Copper",
+     "hex": "#9C5B3A",
+     "roof": "black",
+     "label": "Supernova Copper · black roof"
+    },
+    {
+     "id": "royal-blue",
+     "name": "Royal Blue",
+     "hex": "#1F3A6B",
+     "roof": "body",
+     "label": "Royal Blue"
+    },
+    {
+     "id": "royal-blue-black-roof",
+     "name": "Royal Blue",
+     "hex": "#1F3A6B",
+     "roof": "black",
+     "label": "Royal Blue · black roof"
+    },
+    {
+     "id": "pure-grey",
+     "name": "Pure Grey",
+     "hex": "#676767",
+     "roof": "body",
+     "label": "Pure Grey"
+    },
+    {
+     "id": "pure-grey-black-roof",
+     "name": "Pure Grey",
+     "hex": "#676767",
+     "roof": "black",
+     "label": "Pure Grey · black roof"
+    },
+    {
+     "id": "daytona-grey",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "body",
+     "label": "Daytona Grey"
+    },
+    {
+     "id": "daytona-grey-black-roof",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "black",
+     "label": "Daytona Grey · black roof"
+    },
+    {
+     "id": "oberon-black",
+     "name": "Oberon Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Oberon Black"
+    },
+    {
+     "id": "matte-stealth-black",
+     "name": "Matte Stealth Black",
+     "hex": "#15161A",
+     "roof": "body",
+     "label": "Matte Stealth Black"
+    }
+   ]
   },
   {
    "make": "Tata",
    "model": "Nexon",
    "note": "Compact SUV",
-   "slug": "tata-nexon"
+   "slug": "tata-nexon",
+   "source": "https://www.cardekho.com/tata/nexon/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pristine-white",
+     "name": "Pristine White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Pristine White"
+    },
+    {
+     "id": "pristine-white-black-roof",
+     "name": "Pristine White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Pristine White · black roof"
+    },
+    {
+     "id": "ocean-blue",
+     "name": "Ocean Blue",
+     "hex": "#203B42",
+     "roof": "body",
+     "label": "Ocean Blue"
+    },
+    {
+     "id": "ocean-blue-white-roof",
+     "name": "Ocean Blue",
+     "hex": "#203B42",
+     "roof": "white",
+     "label": "Ocean Blue · white roof"
+    },
+    {
+     "id": "grassland-beige",
+     "name": "Grassland Beige",
+     "hex": "#B8A88A",
+     "roof": "body",
+     "label": "Grassland Beige"
+    },
+    {
+     "id": "grassland-beige-black-roof",
+     "name": "Grassland Beige",
+     "hex": "#B8A88A",
+     "roof": "black",
+     "label": "Grassland Beige · black roof"
+    },
+    {
+     "id": "royal-blue",
+     "name": "Royal Blue",
+     "hex": "#1F3A6B",
+     "roof": "body",
+     "label": "Royal Blue"
+    },
+    {
+     "id": "royal-blue-black-roof",
+     "name": "Royal Blue",
+     "hex": "#1F3A6B",
+     "roof": "black",
+     "label": "Royal Blue · black roof"
+    },
+    {
+     "id": "pure-grey",
+     "name": "Pure Grey",
+     "hex": "#8A8D90",
+     "roof": "body",
+     "label": "Pure Grey"
+    },
+    {
+     "id": "pure-grey-black-roof",
+     "name": "Pure Grey",
+     "hex": "#626262",
+     "roof": "black",
+     "label": "Pure Grey · black roof"
+    },
+    {
+     "id": "daytona-grey",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "body",
+     "label": "Daytona Grey"
+    },
+    {
+     "id": "daytona-grey-black-roof",
+     "name": "Daytona Grey",
+     "hex": "#6B6E70",
+     "roof": "black",
+     "label": "Daytona Grey · black roof"
+    },
+    {
+     "id": "munnar-mist-black-roof",
+     "name": "Munnar Mist",
+     "hex": "#8C9A8A",
+     "roof": "black",
+     "label": "Munnar Mist · black roof"
+    },
+    {
+     "id": "coorg-clouds-black-roof",
+     "name": "Coorg Clouds",
+     "hex": "#8E9399",
+     "roof": "black",
+     "label": "Coorg Clouds · black roof"
+    },
+    {
+     "id": "atlas-black",
+     "name": "Atlas Black",
+     "hex": "#1B1D22",
+     "roof": "body",
+     "label": "Atlas Black"
+    }
+   ]
   },
   {
    "make": "Tata",
    "model": "Curvv",
    "note": "Coupe SUV",
-   "slug": "tata-curvv"
+   "slug": "tata-curvv",
+   "source": "https://www.cardekho.com/tata/curvv/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pristine-white-black-roof",
+     "name": "Pristine White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Pristine White · black roof"
+    },
+    {
+     "id": "opera-blue-black-roof",
+     "name": "Opera Blue",
+     "hex": "#0061AA",
+     "roof": "black",
+     "label": "Opera Blue · black roof"
+    },
+    {
+     "id": "pure-grey-black-roof",
+     "name": "Pure Grey",
+     "hex": "#8A8D90",
+     "roof": "black",
+     "label": "Pure Grey · black roof"
+    },
+    {
+     "id": "nitro-crimson-black-roof",
+     "name": "Nitro Crimson",
+     "hex": "#841E33",
+     "roof": "black",
+     "label": "Nitro Crimson · black roof"
+    },
+    {
+     "id": "glossy-carbon-black",
+     "name": "Glossy Carbon Black",
+     "hex": "#15161A",
+     "roof": "body",
+     "label": "Glossy Carbon Black"
+    }
+   ]
   },
   {
    "make": "Hyundai",
    "model": "Creta",
    "note": "SUV",
-   "slug": "hyundai-creta"
+   "slug": "hyundai-creta",
+   "source": "https://www.cardekho.com/hyundai/creta/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "atlas-white",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Atlas White"
+    },
+    {
+     "id": "atlas-white-titanium-black-roof",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "Titanium Black",
+     "label": "Atlas White · titanium black roof"
+    },
+    {
+     "id": "robust-emerald-pearl",
+     "name": "Robust Emerald Pearl",
+     "hex": "#1F4A3C",
+     "roof": "body",
+     "label": "Robust Emerald Pearl"
+    },
+    {
+     "id": "starry-night",
+     "name": "Starry Night",
+     "hex": "#1C2230",
+     "roof": "body",
+     "label": "Starry Night"
+    },
+    {
+     "id": "ecotronic-grey",
+     "name": "Ecotronic Grey",
+     "hex": "#7A7D82",
+     "roof": "body",
+     "label": "Ecotronic Grey"
+    },
+    {
+     "id": "ecotronic-grey-matte",
+     "name": "Ecotronic Grey Matte",
+     "hex": "#6B6E73",
+     "roof": "body",
+     "label": "Ecotronic Grey Matte"
+    },
+    {
+     "id": "titanium-black",
+     "name": "Titanium Black",
+     "hex": "#1C1D21",
+     "roof": "body",
+     "label": "Titanium Black"
+    },
+    {
+     "id": "titanium-black-matte",
+     "name": "Titanium Black Matte",
+     "hex": "#2B2D31",
+     "roof": "body",
+     "label": "Titanium Black Matte"
+    }
+   ]
   },
   {
    "make": "Hyundai",
    "model": "Alcazar",
    "note": "7-seater SUV",
-   "slug": "hyundai-alcazar"
+   "slug": "hyundai-alcazar",
+   "source": "https://www.cardekho.com/hyundai/alcazar/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "atlas-white",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Atlas White"
+    },
+    {
+     "id": "atlas-white-black-roof",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Atlas White · black roof"
+    },
+    {
+     "id": "robust-emerald-pearl",
+     "name": "Robust Emerald Pearl",
+     "hex": "#1F4A3C",
+     "roof": "body",
+     "label": "Robust Emerald Pearl"
+    },
+    {
+     "id": "robust-emerald-matte",
+     "name": "Robust Emerald Matte",
+     "hex": "#2A4F42",
+     "roof": "body",
+     "label": "Robust Emerald Matte"
+    },
+    {
+     "id": "starry-night",
+     "name": "Starry Night",
+     "hex": "#1C2230",
+     "roof": "body",
+     "label": "Starry Night"
+    },
+    {
+     "id": "golden-bronze",
+     "name": "Golden Bronze",
+     "hex": "#8A6A3B",
+     "roof": "body",
+     "label": "Golden Bronze"
+    },
+    {
+     "id": "titanium-black",
+     "name": "Titanium Black",
+     "hex": "#1C1D21",
+     "roof": "body",
+     "label": "Titanium Black"
+    },
+    {
+     "id": "titanium-black-matte",
+     "name": "Titanium Black Matte",
+     "hex": "#26282C",
+     "roof": "body",
+     "label": "Titanium Black Matte"
+    }
+   ]
   },
   {
    "make": "Hyundai",
    "model": "Verna",
    "note": "Sedan",
-   "slug": "hyundai-verna"
+   "slug": "hyundai-verna",
+   "source": "https://www.cardekho.com/hyundai/verna/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "atlas-white",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Atlas White"
+    },
+    {
+     "id": "atlas-white-black-roof",
+     "name": "Atlas White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Atlas White · black roof"
+    },
+    {
+     "id": "starry-night",
+     "name": "Starry Night",
+     "hex": "#1C2230",
+     "roof": "body",
+     "label": "Starry Night"
+    },
+    {
+     "id": "titan-grey",
+     "name": "Titan Grey",
+     "hex": "#7D8084",
+     "roof": "body",
+     "label": "Titan Grey"
+    },
+    {
+     "id": "titan-grey-matte",
+     "name": "Titan Grey Matte",
+     "hex": "#5E6166",
+     "roof": "body",
+     "label": "Titan Grey Matte"
+    },
+    {
+     "id": "classy-blue",
+     "name": "Classy Blue",
+     "hex": "#2F4A6B",
+     "roof": "body",
+     "label": "Classy Blue"
+    },
+    {
+     "id": "titanium-black",
+     "name": "Titanium Black",
+     "hex": "#1C1D21",
+     "roof": "body",
+     "label": "Titanium Black"
+    }
+   ]
   },
   {
    "make": "Kia",
    "model": "Seltos",
    "note": "SUV",
-   "slug": "kia-seltos"
+   "slug": "kia-seltos",
+   "source": "https://www.cardekho.com/kia/seltos/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "glacier-white-pearl",
+     "name": "Glacier White Pearl",
+     "hex": "#EEF0F2",
+     "roof": "body",
+     "label": "Glacier White Pearl"
+    },
+    {
+     "id": "glacier-white-pearl-aurora-black-pearl-roof",
+     "name": "Glacier White Pearl",
+     "hex": "#EEF0F2",
+     "roof": "Aurora Black Pearl",
+     "label": "Glacier White Pearl · aurora black pearl roof"
+    },
+    {
+     "id": "clear-white",
+     "name": "Clear White",
+     "hex": "#F5F5F5",
+     "roof": "body",
+     "label": "Clear White"
+    },
+    {
+     "id": "ivory-silver-gloss",
+     "name": "Ivory Silver Gloss",
+     "hex": "#D9D6CC",
+     "roof": "body",
+     "label": "Ivory Silver Gloss"
+    },
+    {
+     "id": "morning-haze",
+     "name": "Morning Haze",
+     "hex": "#C9CBCD",
+     "roof": "body",
+     "label": "Morning Haze"
+    },
+    {
+     "id": "gravity-grey",
+     "name": "Gravity Grey",
+     "hex": "#6E7175",
+     "roof": "body",
+     "label": "Gravity Grey"
+    },
+    {
+     "id": "matte-graphite",
+     "name": "Matte Graphite",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Matte Graphite"
+    },
+    {
+     "id": "pewter-olive",
+     "name": "Pewter Olive",
+     "hex": "#5A5A45",
+     "roof": "body",
+     "label": "Pewter Olive"
+    },
+    {
+     "id": "frost-blue",
+     "name": "Frost Blue",
+     "hex": "#8FB3CC",
+     "roof": "body",
+     "label": "Frost Blue"
+    },
+    {
+     "id": "imperial-blue",
+     "name": "Imperial Blue",
+     "hex": "#1F3A6B",
+     "roof": "body",
+     "label": "Imperial Blue"
+    },
+    {
+     "id": "magma-red",
+     "name": "Magma Red",
+     "hex": "#A3262C",
+     "roof": "body",
+     "label": "Magma Red"
+    },
+    {
+     "id": "magma-red-aurora-black-pearl-roof",
+     "name": "Magma Red",
+     "hex": "#A3262C",
+     "roof": "Aurora Black Pearl",
+     "label": "Magma Red · aurora black pearl roof"
+    },
+    {
+     "id": "aurora-black-pearl",
+     "name": "Aurora Black Pearl",
+     "hex": "#0E0F12",
+     "roof": "body",
+     "label": "Aurora Black Pearl"
+    }
+   ]
   },
   {
    "make": "Kia",
    "model": "Carens",
    "note": "MPV",
-   "slug": "kia-carens"
+   "slug": "kia-carens",
+   "source": "https://www.cardekho.com/kia/carens/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "clear-white",
+     "name": "Clear White",
+     "hex": "#F5F5F5",
+     "roof": "body",
+     "label": "Clear White"
+    },
+    {
+     "id": "sparkling-silver",
+     "name": "Sparkling Silver",
+     "hex": "#B9BCC0",
+     "roof": "body",
+     "label": "Sparkling Silver"
+    },
+    {
+     "id": "gravity-grey",
+     "name": "Gravity Grey",
+     "hex": "#6E7175",
+     "roof": "body",
+     "label": "Gravity Grey"
+    },
+    {
+     "id": "pewter-olive",
+     "name": "Pewter Olive",
+     "hex": "#5A5A45",
+     "roof": "body",
+     "label": "Pewter Olive"
+    },
+    {
+     "id": "imperial-blue",
+     "name": "Imperial Blue",
+     "hex": "#1F3A6B",
+     "roof": "body",
+     "label": "Imperial Blue"
+    },
+    {
+     "id": "aurora-black-pearl",
+     "name": "Aurora Black Pearl",
+     "hex": "#0E0F12",
+     "roof": "body",
+     "label": "Aurora Black Pearl"
+    }
+   ]
   },
   {
    "make": "Kia",
    "model": "Sonet",
    "note": "Compact SUV",
-   "slug": "kia-sonet"
+   "slug": "kia-sonet",
+   "source": "https://www.cardekho.com/kia/sonet/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "glacier-white-pearl",
+     "name": "Glacier White Pearl",
+     "hex": "#EEF0F2",
+     "roof": "body",
+     "label": "Glacier White Pearl"
+    },
+    {
+     "id": "glacier-white-pearl-aurora-black-pearl-roof",
+     "name": "Glacier White Pearl",
+     "hex": "#EEF0F2",
+     "roof": "Aurora Black Pearl",
+     "label": "Glacier White Pearl · aurora black pearl roof"
+    },
+    {
+     "id": "clear-white",
+     "name": "Clear White",
+     "hex": "#F5F5F5",
+     "roof": "body",
+     "label": "Clear White"
+    },
+    {
+     "id": "gravity-grey",
+     "name": "Gravity Grey",
+     "hex": "#6E7175",
+     "roof": "body",
+     "label": "Gravity Grey"
+    },
+    {
+     "id": "matte-graphite",
+     "name": "Matte Graphite",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Matte Graphite"
+    },
+    {
+     "id": "pewter-olive",
+     "name": "Pewter Olive",
+     "hex": "#5A5A45",
+     "roof": "body",
+     "label": "Pewter Olive"
+    },
+    {
+     "id": "imperial-blue",
+     "name": "Imperial Blue",
+     "hex": "#1F3A6B",
+     "roof": "body",
+     "label": "Imperial Blue"
+    },
+    {
+     "id": "magma-red",
+     "name": "Magma Red",
+     "hex": "#A3262C",
+     "roof": "body",
+     "label": "Magma Red"
+    },
+    {
+     "id": "magma-red-aurora-black-pearl-roof",
+     "name": "Magma Red",
+     "hex": "#A3262C",
+     "roof": "Aurora Black Pearl",
+     "label": "Magma Red · aurora black pearl roof"
+    },
+    {
+     "id": "aurora-black-pearl",
+     "name": "Aurora Black Pearl",
+     "hex": "#0E0F12",
+     "roof": "body",
+     "label": "Aurora Black Pearl"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Grand Vitara",
    "note": "SUV",
-   "slug": "maruti-suzuki-grand-vitara"
+   "slug": "maruti-suzuki-grand-vitara",
+   "source": "https://www.cardekho.com/maruti/grand-vitara/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "arctic-white",
+     "name": "Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Arctic White"
+    },
+    {
+     "id": "arctic-white-black-roof",
+     "name": "Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "black",
+     "label": "Arctic White · black roof"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "splendid-silver-black-roof",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "black",
+     "label": "Splendid Silver · black roof"
+    },
+    {
+     "id": "grandeur-grey",
+     "name": "Grandeur Grey",
+     "hex": "#6E7175",
+     "roof": "body",
+     "label": "Grandeur Grey"
+    },
+    {
+     "id": "nexa-blue",
+     "name": "Nexa Blue",
+     "hex": "#1E3F6E",
+     "roof": "body",
+     "label": "Nexa Blue"
+    },
+    {
+     "id": "opulent-red",
+     "name": "Opulent Red",
+     "hex": "#8E1B25",
+     "roof": "body",
+     "label": "Opulent Red"
+    },
+    {
+     "id": "opulent-red-black-roof",
+     "name": "Opulent Red",
+     "hex": "#8E1B25",
+     "roof": "black",
+     "label": "Opulent Red · black roof"
+    },
+    {
+     "id": "chestnut-brown",
+     "name": "Chestnut Brown",
+     "hex": "#5C3A26",
+     "roof": "body",
+     "label": "Chestnut Brown"
+    },
+    {
+     "id": "midnight-black",
+     "name": "Midnight Black",
+     "hex": "#1A1B1F",
+     "roof": "body",
+     "label": "Midnight Black"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Brezza",
    "note": "Compact SUV",
-   "slug": "maruti-suzuki-brezza"
+   "slug": "maruti-suzuki-brezza",
+   "source": "https://www.cardekho.com/maruti/brezza/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pearl-arctic-white",
+     "name": "Pearl Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Pearl Arctic White"
+    },
+    {
+     "id": "pearl-arctic-white-bluish-black-roof",
+     "name": "Pearl Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "Bluish Black",
+     "label": "Pearl Arctic White · bluish black roof"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "magma-grey",
+     "name": "Magma Grey",
+     "hex": "#5A5D62",
+     "roof": "body",
+     "label": "Magma Grey"
+    },
+    {
+     "id": "lustrous-beige",
+     "name": "Lustrous Beige",
+     "hex": "#C8B49A",
+     "roof": "body",
+     "label": "Lustrous Beige"
+    },
+    {
+     "id": "lustrous-beige-bluish-black-roof",
+     "name": "Lustrous Beige",
+     "hex": "#C8B49A",
+     "roof": "Bluish Black",
+     "label": "Lustrous Beige · bluish black roof"
+    },
+    {
+     "id": "sizzling-red-bluish-black-roof",
+     "name": "Sizzling Red",
+     "hex": "#B32020",
+     "roof": "Bluish Black",
+     "label": "Sizzling Red · bluish black roof"
+    },
+    {
+     "id": "vivacious-orange",
+     "name": "Vivacious Orange",
+     "hex": "#D9622B",
+     "roof": "body",
+     "label": "Vivacious Orange"
+    },
+    {
+     "id": "pearl-bluish-black",
+     "name": "Pearl Bluish Black",
+     "hex": "#1E2530",
+     "roof": "body",
+     "label": "Pearl Bluish Black"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Swift",
    "note": "Hatchback",
-   "slug": "maruti-suzuki-swift"
+   "slug": "maruti-suzuki-swift",
+   "source": "https://www.cardekho.com/maruti/swift/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pearl-arctic-white",
+     "name": "Pearl Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Pearl Arctic White"
+    },
+    {
+     "id": "pearl-arctic-white-bluish-black-roof",
+     "name": "Pearl Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "Bluish Black",
+     "label": "Pearl Arctic White · bluish black roof"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "magma-grey",
+     "name": "Magma Grey",
+     "hex": "#5A5D62",
+     "roof": "body",
+     "label": "Magma Grey"
+    },
+    {
+     "id": "luster-blue",
+     "name": "Luster Blue",
+     "hex": "#2E5C8A",
+     "roof": "body",
+     "label": "Luster Blue"
+    },
+    {
+     "id": "luster-blue-bluish-black-roof",
+     "name": "Luster Blue",
+     "hex": "#2E5C8A",
+     "roof": "Bluish Black",
+     "label": "Luster Blue · bluish black roof"
+    },
+    {
+     "id": "sizzling-red",
+     "name": "Sizzling Red",
+     "hex": "#B32020",
+     "roof": "body",
+     "label": "Sizzling Red"
+    },
+    {
+     "id": "sizzling-red-bluish-black-roof",
+     "name": "Sizzling Red",
+     "hex": "#B32020",
+     "roof": "Bluish Black",
+     "label": "Sizzling Red · bluish black roof"
+    },
+    {
+     "id": "novel-orange",
+     "name": "Novel Orange",
+     "hex": "#E0702A",
+     "roof": "body",
+     "label": "Novel Orange"
+    },
+    {
+     "id": "bluish-black",
+     "name": "Bluish Black",
+     "hex": "#1E2530",
+     "roof": "body",
+     "label": "Bluish Black"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Baleno",
    "note": "Hatchback",
-   "slug": "maruti-suzuki-baleno"
+   "slug": "maruti-suzuki-baleno",
+   "source": "https://www.cardekho.com/maruti/baleno/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "arctic-white",
+     "name": "Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Arctic White"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "grandeur-grey",
+     "name": "Grandeur Grey",
+     "hex": "#6E7175",
+     "roof": "body",
+     "label": "Grandeur Grey"
+    },
+    {
+     "id": "nexa-blue",
+     "name": "Nexa Blue",
+     "hex": "#1E3F6E",
+     "roof": "body",
+     "label": "Nexa Blue"
+    },
+    {
+     "id": "enigmatic-teal-green",
+     "name": "Enigmatic Teal Green",
+     "hex": "#1F5A5A",
+     "roof": "body",
+     "label": "Enigmatic Teal Green"
+    },
+    {
+     "id": "opulent-red",
+     "name": "Opulent Red",
+     "hex": "#8E1B25",
+     "roof": "body",
+     "label": "Opulent Red"
+    },
+    {
+     "id": "bluish-black",
+     "name": "Bluish Black",
+     "hex": "#1E2530",
+     "roof": "body",
+     "label": "Bluish Black"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Dzire",
    "note": "Sedan",
-   "slug": "maruti-suzuki-dzire"
+   "slug": "maruti-suzuki-dzire",
+   "source": "https://www.cardekho.com/maruti/dzire/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pearl-arctic-white",
+     "name": "Pearl Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Pearl Arctic White"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "magma-grey",
+     "name": "Magma Grey",
+     "hex": "#5A5D62",
+     "roof": "body",
+     "label": "Magma Grey"
+    },
+    {
+     "id": "alluring-blue",
+     "name": "Alluring Blue",
+     "hex": "#2F5F8F",
+     "roof": "body",
+     "label": "Alluring Blue"
+    },
+    {
+     "id": "gallant-red",
+     "name": "Gallant Red",
+     "hex": "#A32A2A",
+     "roof": "body",
+     "label": "Gallant Red"
+    },
+    {
+     "id": "nutmeg-brown",
+     "name": "Nutmeg Brown",
+     "hex": "#6B4A32",
+     "roof": "body",
+     "label": "Nutmeg Brown"
+    },
+    {
+     "id": "bluish-black",
+     "name": "Bluish Black",
+     "hex": "#1E2530",
+     "roof": "body",
+     "label": "Bluish Black"
+    }
+   ]
   },
   {
    "make": "Maruti Suzuki",
    "model": "Ertiga",
    "note": "MPV",
-   "slug": "maruti-suzuki-ertiga"
+   "slug": "maruti-suzuki-ertiga",
+   "source": "https://www.cardekho.com/maruti/ertiga/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "arctic-white",
+     "name": "Arctic White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Arctic White"
+    },
+    {
+     "id": "splendid-silver",
+     "name": "Splendid Silver",
+     "hex": "#B5B8BC",
+     "roof": "body",
+     "label": "Splendid Silver"
+    },
+    {
+     "id": "magma-grey",
+     "name": "Magma Grey",
+     "hex": "#5A5D62",
+     "roof": "body",
+     "label": "Magma Grey"
+    },
+    {
+     "id": "prime-oxford-blue",
+     "name": "Prime Oxford Blue",
+     "hex": "#1F3560",
+     "roof": "body",
+     "label": "Prime Oxford Blue"
+    },
+    {
+     "id": "auburn-red",
+     "name": "Auburn Red",
+     "hex": "#7A2A2A",
+     "roof": "body",
+     "label": "Auburn Red"
+    },
+    {
+     "id": "pearl-metallic-dignity-brown",
+     "name": "Pearl Metallic Dignity Brown",
+     "hex": "#5B3D2B",
+     "roof": "body",
+     "label": "Pearl Metallic Dignity Brown"
+    },
+    {
+     "id": "bluish-black",
+     "name": "Bluish Black",
+     "hex": "#1E2530",
+     "roof": "body",
+     "label": "Bluish Black"
+    }
+   ]
   },
   {
    "make": "Toyota",
    "model": "Fortuner",
    "note": "7-seater SUV",
-   "slug": "toyota-fortuner"
+   "slug": "toyota-fortuner",
+   "source": "https://www.cardekho.com/toyota/fortuner/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "super-white",
+     "name": "Super White",
+     "hex": "#F5F5F5",
+     "roof": "body",
+     "label": "Super White"
+    },
+    {
+     "id": "platinum-white-pearl",
+     "name": "Platinum White Pearl",
+     "hex": "#D9DCE2",
+     "roof": "body",
+     "label": "Platinum White Pearl"
+    },
+    {
+     "id": "avant-garde-bronze",
+     "name": "Avant Garde Bronze",
+     "hex": "#5A4A3F",
+     "roof": "body",
+     "label": "Avant Garde Bronze"
+    },
+    {
+     "id": "sparkling-black-crystal-shine",
+     "name": "Sparkling Black Crystal Shine",
+     "hex": "#2F2C2F",
+     "roof": "body",
+     "label": "Sparkling Black Crystal Shine"
+    },
+    {
+     "id": "attitude-black",
+     "name": "Attitude Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Attitude Black"
+    }
+   ]
   },
   {
    "make": "Toyota",
    "model": "Innova Hycross",
    "note": "MPV",
-   "slug": "toyota-innova-hycross"
+   "slug": "toyota-innova-hycross",
+   "source": "https://www.cardekho.com/toyota/innova-hycross/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "super-white",
+     "name": "Super White",
+     "hex": "#F4F4F4",
+     "roof": "body",
+     "label": "Super White"
+    },
+    {
+     "id": "platinum-white-pearl",
+     "name": "Platinum White Pearl",
+     "hex": "#E2E2E0",
+     "roof": "body",
+     "label": "Platinum White Pearl"
+    },
+    {
+     "id": "silver-metallic",
+     "name": "Silver Metallic",
+     "hex": "#A5A9AD",
+     "roof": "body",
+     "label": "Silver Metallic"
+    },
+    {
+     "id": "avant-garde-bronze",
+     "name": "Avant Garde Bronze",
+     "hex": "#6B5B4E",
+     "roof": "body",
+     "label": "Avant Garde Bronze"
+    },
+    {
+     "id": "blackish-ageha-glass-flake",
+     "name": "Blackish Ageha Glass Flake",
+     "hex": "#2A2D33",
+     "roof": "body",
+     "label": "Blackish Ageha Glass Flake"
+    },
+    {
+     "id": "attitude-black-mica",
+     "name": "Attitude Black Mica",
+     "hex": "#0B0A0A",
+     "roof": "body",
+     "label": "Attitude Black Mica"
+    }
+   ]
   },
   {
    "make": "Toyota",
-   "model": "Hyryder",
+   "model": "Urban Cruiser Hyryder",
    "note": "SUV",
-   "slug": "toyota-hyryder"
+   "slug": "toyota-urban-cruiser-hyryder",
+   "source": "https://www.cardekho.com/toyota/urban-cruiser-hyryder/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "cafe-white",
+     "name": "Cafe White",
+     "hex": "#E8DFD0",
+     "roof": "body",
+     "label": "Cafe White"
+    },
+    {
+     "id": "cafe-white-black-roof",
+     "name": "Cafe White",
+     "hex": "#E8DFD0",
+     "roof": "black",
+     "label": "Cafe White · black roof"
+    },
+    {
+     "id": "enticing-silver",
+     "name": "Enticing Silver",
+     "hex": "#9A9CA0",
+     "roof": "body",
+     "label": "Enticing Silver"
+    },
+    {
+     "id": "enticing-silver-black-roof",
+     "name": "Enticing Silver",
+     "hex": "#9A9CA0",
+     "roof": "black",
+     "label": "Enticing Silver · black roof"
+    },
+    {
+     "id": "gaming-grey",
+     "name": "Gaming Grey",
+     "hex": "#6E7174",
+     "roof": "body",
+     "label": "Gaming Grey"
+    },
+    {
+     "id": "speedy-blue",
+     "name": "Speedy Blue",
+     "hex": "#113761",
+     "roof": "body",
+     "label": "Speedy Blue"
+    },
+    {
+     "id": "speedy-blue-black-roof",
+     "name": "Speedy Blue",
+     "hex": "#113761",
+     "roof": "black",
+     "label": "Speedy Blue · black roof"
+    },
+    {
+     "id": "sportin-red",
+     "name": "Sportin Red",
+     "hex": "#B3262E",
+     "roof": "body",
+     "label": "Sportin Red"
+    },
+    {
+     "id": "sportin-red-black-roof",
+     "name": "Sportin Red",
+     "hex": "#B3262E",
+     "roof": "black",
+     "label": "Sportin Red · black roof"
+    },
+    {
+     "id": "cave-black",
+     "name": "Cave Black",
+     "hex": "#1A1A1C",
+     "roof": "body",
+     "label": "Cave Black"
+    },
+    {
+     "id": "midnight-black",
+     "name": "Midnight Black",
+     "hex": "#0E0E10",
+     "roof": "body",
+     "label": "Midnight Black"
+    }
+   ]
   },
   {
    "make": "Honda",
    "model": "City",
    "note": "Sedan",
-   "slug": "honda-city"
+   "slug": "honda-city",
+   "source": "https://www.cardekho.com/honda/city/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "platinum-white-pearl",
+     "name": "Platinum White Pearl",
+     "hex": "#E3E3EA",
+     "roof": "body",
+     "label": "Platinum White Pearl"
+    },
+    {
+     "id": "lunar-silver-metallic",
+     "name": "Lunar Silver Metallic",
+     "hex": "#A0A0A8",
+     "roof": "body",
+     "label": "Lunar Silver Metallic"
+    },
+    {
+     "id": "meteoroid-grey-metallic",
+     "name": "Meteoroid Grey Metallic",
+     "hex": "#5E6165",
+     "roof": "body",
+     "label": "Meteoroid Grey Metallic"
+    },
+    {
+     "id": "obsidian-blue-pearl",
+     "name": "Obsidian Blue Pearl",
+     "hex": "#1F2A44",
+     "roof": "body",
+     "label": "Obsidian Blue Pearl"
+    },
+    {
+     "id": "radiant-red-metallic",
+     "name": "Radiant Red Metallic",
+     "hex": "#A3132B",
+     "roof": "body",
+     "label": "Radiant Red Metallic"
+    },
+    {
+     "id": "crystal-black-pearl",
+     "name": "Crystal Black Pearl",
+     "hex": "#0E0E10",
+     "roof": "body",
+     "label": "Crystal Black Pearl"
+    }
+   ]
   },
   {
    "make": "Honda",
    "model": "Elevate",
    "note": "SUV",
-   "slug": "honda-elevate"
+   "slug": "honda-elevate",
+   "source": "https://www.cardekho.com/honda/elevate/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "platinum-white-pearl",
+     "name": "Platinum White Pearl",
+     "hex": "#D9DBDF",
+     "roof": "body",
+     "label": "Platinum White Pearl"
+    },
+    {
+     "id": "platinum-white-pearl-black-roof",
+     "name": "Platinum White Pearl",
+     "hex": "#D9DBDF",
+     "roof": "black",
+     "label": "Platinum White Pearl · black roof"
+    },
+    {
+     "id": "lunar-silver-metallic",
+     "name": "Lunar Silver Metallic",
+     "hex": "#9A9EA1",
+     "roof": "body",
+     "label": "Lunar Silver Metallic"
+    },
+    {
+     "id": "meteoroid-grey-metallic",
+     "name": "Meteoroid Grey Metallic",
+     "hex": "#5E6165",
+     "roof": "body",
+     "label": "Meteoroid Grey Metallic"
+    },
+    {
+     "id": "obsidian-blue-pearl",
+     "name": "Obsidian Blue Pearl",
+     "hex": "#1F2A44",
+     "roof": "body",
+     "label": "Obsidian Blue Pearl"
+    },
+    {
+     "id": "radiant-red-metallic",
+     "name": "Radiant Red Metallic",
+     "hex": "#A3132B",
+     "roof": "body",
+     "label": "Radiant Red Metallic"
+    },
+    {
+     "id": "radiant-red-metallic-black-roof",
+     "name": "Radiant Red Metallic",
+     "hex": "#A3132B",
+     "roof": "black",
+     "label": "Radiant Red Metallic · black roof"
+    },
+    {
+     "id": "nordic-forest-pearl",
+     "name": "Nordic Forest Pearl",
+     "hex": "#2F4A3A",
+     "roof": "body",
+     "label": "Nordic Forest Pearl"
+    },
+    {
+     "id": "nordic-forest-pearl-black-roof",
+     "name": "Nordic Forest Pearl",
+     "hex": "#2F4A3A",
+     "roof": "black",
+     "label": "Nordic Forest Pearl · black roof"
+    },
+    {
+     "id": "crystal-black-pearl",
+     "name": "Crystal Black Pearl",
+     "hex": "#0E0E10",
+     "roof": "body",
+     "label": "Crystal Black Pearl"
+    }
+   ]
   },
   {
    "make": "Skoda",
    "model": "Kylaq",
    "note": "Compact SUV",
-   "slug": "skoda-kylaq"
+   "slug": "skoda-kylaq",
+   "source": "https://www.cardekho.com/skoda/kylaq/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "candy-white",
+     "name": "Candy White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Candy White"
+    },
+    {
+     "id": "brilliant-silver",
+     "name": "Brilliant Silver",
+     "hex": "#A8A9AD",
+     "roof": "body",
+     "label": "Brilliant Silver"
+    },
+    {
+     "id": "steel-grey",
+     "name": "Steel Grey",
+     "hex": "#6B7075",
+     "roof": "body",
+     "label": "Steel Grey"
+    },
+    {
+     "id": "carbon-steel",
+     "name": "Carbon Steel",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Carbon Steel"
+    },
+    {
+     "id": "lava-blue",
+     "name": "Lava Blue",
+     "hex": "#295773",
+     "roof": "body",
+     "label": "Lava Blue"
+    },
+    {
+     "id": "cherry-red",
+     "name": "Cherry Red",
+     "hex": "#9E1B2A",
+     "roof": "body",
+     "label": "Cherry Red"
+    },
+    {
+     "id": "deep-black",
+     "name": "Deep Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Deep Black"
+    }
+   ]
   },
   {
    "make": "Skoda",
    "model": "Kushaq",
    "note": "SUV",
-   "slug": "skoda-kushaq"
+   "slug": "skoda-kushaq",
+   "source": "https://www.cardekho.com/skoda/kushaq/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "candy-white",
+     "name": "Candy White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Candy White"
+    },
+    {
+     "id": "brilliant-silver",
+     "name": "Brilliant Silver",
+     "hex": "#A8A9AD",
+     "roof": "body",
+     "label": "Brilliant Silver"
+    },
+    {
+     "id": "steel-grey",
+     "name": "Steel Grey",
+     "hex": "#6B7075",
+     "roof": "body",
+     "label": "Steel Grey"
+    },
+    {
+     "id": "carbon-steel",
+     "name": "Carbon Steel",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Carbon Steel"
+    },
+    {
+     "id": "lava-blue",
+     "name": "Lava Blue",
+     "hex": "#163550",
+     "roof": "body",
+     "label": "Lava Blue"
+    },
+    {
+     "id": "shimla-green",
+     "name": "Shimla Green",
+     "hex": "#4F6B4E",
+     "roof": "body",
+     "label": "Shimla Green"
+    },
+    {
+     "id": "cherry-red",
+     "name": "Cherry Red",
+     "hex": "#9E1B2A",
+     "roof": "body",
+     "label": "Cherry Red"
+    },
+    {
+     "id": "deep-black",
+     "name": "Deep Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Deep Black"
+    }
+   ]
   },
   {
    "make": "Skoda",
    "model": "Slavia",
    "note": "Sedan",
-   "slug": "skoda-slavia"
+   "slug": "skoda-slavia",
+   "source": "https://www.cardekho.com/skoda/slavia/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "candy-white",
+     "name": "Candy White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Candy White"
+    },
+    {
+     "id": "arctic-silver",
+     "name": "Arctic Silver",
+     "hex": "#D5D8DC",
+     "roof": "body",
+     "label": "Arctic Silver"
+    },
+    {
+     "id": "brilliant-silver",
+     "name": "Brilliant Silver",
+     "hex": "#A8A9AD",
+     "roof": "body",
+     "label": "Brilliant Silver"
+    },
+    {
+     "id": "steel-grey",
+     "name": "Steel Grey",
+     "hex": "#6B7075",
+     "roof": "body",
+     "label": "Steel Grey"
+    },
+    {
+     "id": "carbon-steel",
+     "name": "Carbon Steel",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Carbon Steel"
+    },
+    {
+     "id": "cappuccino-beige",
+     "name": "Cappuccino Beige",
+     "hex": "#B8A590",
+     "roof": "body",
+     "label": "Cappuccino Beige"
+    },
+    {
+     "id": "lava-blue",
+     "name": "Lava Blue",
+     "hex": "#1E3140",
+     "roof": "body",
+     "label": "Lava Blue"
+    },
+    {
+     "id": "shimla-green",
+     "name": "Shimla Green",
+     "hex": "#4F6B4E",
+     "roof": "body",
+     "label": "Shimla Green"
+    },
+    {
+     "id": "cherry-red",
+     "name": "Cherry Red",
+     "hex": "#9E1B2A",
+     "roof": "body",
+     "label": "Cherry Red"
+    },
+    {
+     "id": "deep-black",
+     "name": "Deep Black",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Deep Black"
+    }
+   ]
   },
   {
    "make": "Volkswagen",
    "model": "Taigun",
    "note": "SUV",
-   "slug": "volkswagen-taigun"
+   "slug": "volkswagen-taigun",
+   "source": "https://www.cardekho.com/volkswagen/taigun/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "candy-white",
+     "name": "Candy White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Candy White"
+    },
+    {
+     "id": "reflex-silver-metallic",
+     "name": "Reflex Silver Metallic",
+     "hex": "#B5B9BE",
+     "roof": "body",
+     "label": "Reflex Silver Metallic"
+    },
+    {
+     "id": "steel-grey",
+     "name": "Steel Grey",
+     "hex": "#6B7075",
+     "roof": "body",
+     "label": "Steel Grey"
+    },
+    {
+     "id": "carbon-steel-grey-metallic",
+     "name": "Carbon Steel Grey Metallic",
+     "hex": "#5E6165",
+     "roof": "body",
+     "label": "Carbon Steel Grey Metallic"
+    },
+    {
+     "id": "carbon-steel-matte",
+     "name": "Carbon Steel Matte",
+     "hex": "#4A4D52",
+     "roof": "body",
+     "label": "Carbon Steel Matte"
+    },
+    {
+     "id": "lava-blue-metallic",
+     "name": "Lava Blue Metallic",
+     "hex": "#0E2839",
+     "roof": "body",
+     "label": "Lava Blue Metallic"
+    },
+    {
+     "id": "avocado-pearl-effect",
+     "name": "Avocado Pearl Effect",
+     "hex": "#5E6B4A",
+     "roof": "body",
+     "label": "Avocado Pearl Effect"
+    },
+    {
+     "id": "wild-cherry-red-metallic",
+     "name": "Wild Cherry Red Metallic",
+     "hex": "#531622",
+     "roof": "body",
+     "label": "Wild Cherry Red Metallic"
+    },
+    {
+     "id": "deep-black-pearl",
+     "name": "Deep Black Pearl",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Deep Black Pearl"
+    }
+   ]
   },
   {
    "make": "Volkswagen",
    "model": "Virtus",
    "note": "Sedan",
-   "slug": "volkswagen-virtus"
+   "slug": "volkswagen-virtus",
+   "source": "https://www.cardekho.com/volkswagen/virtus/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "candy-white",
+     "name": "Candy White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Candy White"
+    },
+    {
+     "id": "reflex-silver",
+     "name": "Reflex Silver",
+     "hex": "#B5B9BE",
+     "roof": "body",
+     "label": "Reflex Silver"
+    },
+    {
+     "id": "carbon-steel-grey",
+     "name": "Carbon Steel Grey",
+     "hex": "#5E6165",
+     "roof": "body",
+     "label": "Carbon Steel Grey"
+    },
+    {
+     "id": "carbon-steel-grey-matte",
+     "name": "Carbon Steel Grey Matte",
+     "hex": "#36383C",
+     "roof": "body",
+     "label": "Carbon Steel Grey Matte"
+    },
+    {
+     "id": "lava-blue",
+     "name": "Lava Blue",
+     "hex": "#043C69",
+     "roof": "body",
+     "label": "Lava Blue"
+    },
+    {
+     "id": "rising-blue-metallic",
+     "name": "Rising Blue Metallic",
+     "hex": "#3F5A7A",
+     "roof": "body",
+     "label": "Rising Blue Metallic"
+    },
+    {
+     "id": "avocado-pearl",
+     "name": "Avocado Pearl",
+     "hex": "#5E6B4A",
+     "roof": "body",
+     "label": "Avocado Pearl"
+    },
+    {
+     "id": "wild-cherry-red",
+     "name": "Wild Cherry Red",
+     "hex": "#531622",
+     "roof": "body",
+     "label": "Wild Cherry Red"
+    },
+    {
+     "id": "deep-black-pearl",
+     "name": "Deep Black Pearl",
+     "hex": "#0B0B0C",
+     "roof": "body",
+     "label": "Deep Black Pearl"
+    }
+   ]
   },
   {
    "make": "MG",
    "model": "Hector",
    "note": "SUV",
-   "slug": "mg-hector"
+   "slug": "mg-hector",
+   "source": "https://www.cardekho.com/mg/hector/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pearl-white",
+     "name": "Pearl White",
+     "hex": "#E6E6E6",
+     "roof": "body",
+     "label": "Pearl White"
+    },
+    {
+     "id": "aurora-silver",
+     "name": "Aurora Silver",
+     "hex": "#A7AAAE",
+     "roof": "body",
+     "label": "Aurora Silver"
+    },
+    {
+     "id": "celadon-blue",
+     "name": "Celadon Blue",
+     "hex": "#7FA3B5",
+     "roof": "body",
+     "label": "Celadon Blue"
+    },
+    {
+     "id": "glaze-red",
+     "name": "Glaze Red",
+     "hex": "#8E1B2C",
+     "roof": "body",
+     "label": "Glaze Red"
+    },
+    {
+     "id": "starry-black",
+     "name": "Starry Black",
+     "hex": "#101012",
+     "roof": "body",
+     "label": "Starry Black"
+    }
+   ]
   },
   {
    "make": "MG",
    "model": "Windsor EV",
    "note": "Electric",
-   "slug": "mg-windsor-ev"
+   "slug": "mg-windsor-ev",
+   "source": "https://www.cardekho.com/mg/windsor-ev/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "pearl-white",
+     "name": "Pearl White",
+     "hex": "#E6E6E6",
+     "roof": "body",
+     "label": "Pearl White"
+    },
+    {
+     "id": "aurora-silver",
+     "name": "Aurora Silver",
+     "hex": "#A7AAAE",
+     "roof": "body",
+     "label": "Aurora Silver"
+    },
+    {
+     "id": "turquoise-green",
+     "name": "Turquoise Green",
+     "hex": "#3E8C86",
+     "roof": "body",
+     "label": "Turquoise Green"
+    },
+    {
+     "id": "celadon-blue",
+     "name": "Celadon Blue",
+     "hex": "#7FA3B5",
+     "roof": "body",
+     "label": "Celadon Blue"
+    },
+    {
+     "id": "glaze-red",
+     "name": "Glaze Red",
+     "hex": "#8E1B2C",
+     "roof": "body",
+     "label": "Glaze Red"
+    },
+    {
+     "id": "starry-black",
+     "name": "Starry Black",
+     "hex": "#000000",
+     "roof": "body",
+     "label": "Starry Black"
+    }
+   ]
   },
   {
    "make": "BMW",
    "model": "X1",
    "note": "Luxury SUV",
-   "slug": "bmw-x1"
+   "slug": "bmw-x1",
+   "source": "https://www.bmw.in/en/all-models/x-series/X1/bmw-x1-highlights.html",
+   "remark": "",
+   "colours": [
+    {
+     "id": "mineral-white-metallic",
+     "name": "Mineral White Metallic",
+     "hex": "#E9E9E9",
+     "roof": "body",
+     "label": "Mineral White Metallic"
+    },
+    {
+     "id": "skyscraper-grey-metallic",
+     "name": "Skyscraper Grey Metallic",
+     "hex": "#3C4343",
+     "roof": "body",
+     "label": "Skyscraper Grey Metallic"
+    },
+    {
+     "id": "night-dusk-blue",
+     "name": "Night Dusk Blue",
+     "hex": "#1C2A3F",
+     "roof": "body",
+     "label": "Night Dusk Blue"
+    },
+    {
+     "id": "m-carbon-black-metallic",
+     "name": "M Carbon Black Metallic",
+     "hex": "#1A1A1C",
+     "roof": "body",
+     "label": "M Carbon Black Metallic"
+    }
+   ]
   },
   {
    "make": "BMW",
-   "model": "3 Series",
+   "model": "3 Series Gran Limousine",
    "note": "Luxury sedan",
-   "slug": "bmw-3-series"
+   "slug": "bmw-3-series-gran-limousine",
+   "source": "https://www.cardekho.com/bmw/3-series-long-wheelbase/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "mineral-white",
+     "name": "Mineral White",
+     "hex": "#CDCDCB",
+     "roof": "body",
+     "label": "Mineral White"
+    },
+    {
+     "id": "skyscraper-grey-metallic",
+     "name": "Skyscraper Grey Metallic",
+     "hex": "#3C4343",
+     "roof": "body",
+     "label": "Skyscraper Grey Metallic"
+    },
+    {
+     "id": "portimao-blue",
+     "name": "Portimao Blue",
+     "hex": "#1F3A5C",
+     "roof": "body",
+     "label": "Portimao Blue"
+    },
+    {
+     "id": "carbon-black",
+     "name": "Carbon Black",
+     "hex": "#1C212D",
+     "roof": "body",
+     "label": "Carbon Black"
+    }
+   ]
   },
   {
    "make": "Mercedes-Benz",
    "model": "GLA",
    "note": "Luxury SUV",
-   "slug": "mercedes-benz-gla"
+   "slug": "mercedes-benz-gla",
+   "source": "https://www.cardekho.com/mercedes-benz/gla/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "polar-white",
+     "name": "Polar White",
+     "hex": "#F4F4F2",
+     "roof": "body",
+     "label": "Polar White"
+    },
+    {
+     "id": "iridium-silver",
+     "name": "Iridium Silver",
+     "hex": "#A0A8AC",
+     "roof": "body",
+     "label": "Iridium Silver"
+    },
+    {
+     "id": "mountain-grey",
+     "name": "Mountain Grey",
+     "hex": "#545755",
+     "roof": "body",
+     "label": "Mountain Grey"
+    },
+    {
+     "id": "cosmos-black",
+     "name": "Cosmos Black",
+     "hex": "#0D0E10",
+     "roof": "body",
+     "label": "Cosmos Black"
+    }
+   ]
   },
   {
    "make": "Mercedes-Benz",
    "model": "C-Class",
    "note": "Luxury sedan",
-   "slug": "mercedes-benz-c-class"
+   "slug": "mercedes-benz-c-class",
+   "source": "https://www.cardekho.com/mercedes-benz/c-class/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "opalite-white-bright",
+     "name": "Opalite White Bright",
+     "hex": "#F2F1EC",
+     "roof": "body",
+     "label": "Opalite White Bright"
+    },
+    {
+     "id": "high-tech-silver",
+     "name": "High Tech Silver",
+     "hex": "#A0A7AE",
+     "roof": "body",
+     "label": "High Tech Silver"
+    },
+    {
+     "id": "selenite-grey",
+     "name": "Selenite Grey",
+     "hex": "#5C6062",
+     "roof": "body",
+     "label": "Selenite Grey"
+    },
+    {
+     "id": "sodalite-blue",
+     "name": "Sodalite Blue",
+     "hex": "#2A3D5C",
+     "roof": "body",
+     "label": "Sodalite Blue"
+    },
+    {
+     "id": "obsidian-black",
+     "name": "Obsidian Black",
+     "hex": "#101114",
+     "roof": "body",
+     "label": "Obsidian Black"
+    }
+   ]
   },
   {
    "make": "Audi",
    "model": "Q3",
    "note": "Luxury SUV",
-   "slug": "audi-q3"
+   "slug": "audi-q3",
+   "source": "https://www.cardekho.com/audi/q3/colors",
+   "remark": "",
+   "colours": [
+    {
+     "id": "glacier-white-metallic",
+     "name": "Glacier White Metallic",
+     "hex": "#E6E8EA",
+     "roof": "body",
+     "label": "Glacier White Metallic"
+    },
+    {
+     "id": "nano-grey-metallic",
+     "name": "Nano Grey Metallic",
+     "hex": "#33342F",
+     "roof": "body",
+     "label": "Nano Grey Metallic"
+    },
+    {
+     "id": "navarra-blue-metallic",
+     "name": "Navarra Blue Metallic",
+     "hex": "#1D2F4F",
+     "roof": "body",
+     "label": "Navarra Blue Metallic"
+    },
+    {
+     "id": "progressive-red-metallic",
+     "name": "Progressive Red Metallic",
+     "hex": "#8F1D24",
+     "roof": "body",
+     "label": "Progressive Red Metallic"
+    },
+    {
+     "id": "mythos-black-metallic",
+     "name": "Mythos Black Metallic",
+     "hex": "#15120D",
+     "roof": "body",
+     "label": "Mythos Black Metallic"
+    }
+   ]
   }
  ]
 }

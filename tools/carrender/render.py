@@ -1,56 +1,95 @@
-"""Generate the car picture library with Google's Nano Banana models on Vertex AI.
+"""Car picture library generator — Google Nano Banana on Vertex AI, paid from Biolynk GCP credits.
 
-Uses Biolynk's GCP credits (project biolynk-studio-2610, account founder@biolynktech.com).
-Never run the full library without Mohit's OK.
+No extra packages: uses Python's standard library + your gcloud login (founder@biolynktech.com).
+Project biolynk-studio-2610, global endpoint.
 
-Setup (once):
-    pip install google-genai pillow
-    gcloud auth application-default login   # as founder@biolynktech.com
+    python tools/carrender/render.py --test                 # 5 cars, both models -> <out>/test/<model>/
+    python tools/carrender/render.py --model pro --all      # every model x every manufacturer colour
+    python tools/carrender/render.py --model pro --car jeep-meridian
 
-Examples:
-    python render.py --test                  # 5 cars x 1 colour, both models -> out/test/
-    python render.py --model pro --all       # full catalogue x colours -> out/pro/
+Output (default D:/Projects/mydrive-assets/cars) is outside Git: full-size 2K JPEGs.
+Already-rendered files are skipped, so the run can be stopped and resumed.
 """
-import argparse, json, pathlib, sys, time
-from google import genai
-from google.genai import types
+import argparse, base64, json, pathlib, subprocess, sys, time, urllib.request, urllib.error
+from concurrent.futures import ThreadPoolExecutor
 
 PROJECT = "biolynk-studio-2610"
-LOCATION = "global"
 MODELS = {"pro": "gemini-3-pro-image", "nb21": "gemini-nano-banana-2.1"}
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-CATALOG = json.loads((ROOT / "shared" / "car-catalog.json").read_text())
-
-PROMPT = (
-    "Photorealistic studio photograph of a {colour} {make} {model} ({note}), current Indian-market version, "
-    "{roof_text}, {wheel_text}, three-quarter front view facing left, on a glossy jet-black floor with a soft "
-    "reflection, pure black seamless background, low-key lighting with a warm golden rim light along the roofline "
-    "and a soft cool key light on the body, premium car-launch look, 16:9, car in the right two-thirds of the frame "
-    "with empty dark space on the left. No text, no people, no number plate text, no watermarks."
-)
-
+CATALOG = json.loads((ROOT / "shared" / "car-catalog.json").read_text(encoding="utf-8"))
 TEST_SET = ["jeep-meridian", "mahindra-xuv700", "tata-safari", "hyundai-creta", "toyota-fortuner"]
 
+PROMPT = (
+    "Photorealistic studio photograph of a {make} {model} ({note}), the current Indian-market version, "
+    "painted in the manufacturer colour \"{colour}\" (approximately {hex}), {roof}, factory alloy wheels. "
+    "Three-quarter front view facing left. Glossy jet-black floor with a soft reflection, pure black seamless "
+    "background, low-key lighting with a warm golden rim light along the roofline and a soft cool key light on the "
+    "body panels. Premium car-launch look. 16:9 frame, car in the right two-thirds, empty dark space on the left. "
+    "Accurate body shape, grille, lights and proportions for this exact model. "
+    "No text, no people, no number plate text, no watermark."
+)
 
-def render(client, model_id, car, colour, roof="black", wheels="black", out_dir=pathlib.Path("out")):
+_token = {"v": None, "t": 0}
+
+
+def token():
+    if not _token["v"] or time.time() - _token["t"] > 2400:
+        gcloud = "gcloud.cmd" if sys.platform == "win32" else "gcloud"
+        _token["v"] = subprocess.check_output([gcloud, "auth", "print-access-token"], text=True).strip()
+        _token["t"] = time.time()
+    return _token["v"]
+
+
+def roof_text(roof):
+    if roof == "body":
+        return "body-coloured roof"
+    if roof.lower() == "black":
+        return "contrasting gloss black roof (dual-tone)"
+    return f"contrasting {roof} roof (dual-tone)"
+
+
+def render(model_key, car, colour, out_dir, retries=3):
     out_dir.mkdir(parents=True, exist_ok=True)
-    path = out_dir / f"{car['slug']}-{colour.lower()}.jpg"
+    path = out_dir / f"{car['slug']}--{colour['id']}.jpg"
     if path.exists():
-        return path
-    prompt = PROMPT.format(colour=colour.lower(), make=car["make"], model=car["model"], note=car["note"],
-                           roof_text="gloss black roof" if roof == "black" else "body-colour roof",
-                           wheel_text="black alloy wheels" if wheels == "black" else "silver alloy wheels")
-    t0 = time.time()
-    resp = client.models.generate_content(
-        model=model_id, contents=prompt,
-        config=types.GenerateContentConfig(response_modalities=["IMAGE"],
-                                           image_config=types.ImageConfig(aspect_ratio="16:9")))
-    for part in resp.candidates[0].content.parts:
-        if part.inline_data:
-            path.write_bytes(part.inline_data.data)
-            print(f"ok {path.name} {time.time() - t0:.1f}s")
-            return path
-    print(f"no image for {path.name}", file=sys.stderr)
+        return "skip"
+    prompt = PROMPT.format(make=car["make"], model=car["model"], note=car["note"], colour=colour["name"],
+                           hex=colour["hex"], roof=roof_text(colour["roof"]))
+    url = (f"https://aiplatform.googleapis.com/v1/projects/{PROJECT}/locations/global/"
+           f"publishers/google/models/{MODELS[model_key]}:generateContent")
+    body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
+            "generationConfig": {"responseModalities": ["IMAGE"],
+                                 "imageConfig": {"aspectRatio": "16:9", "imageSize": "2K"}}}
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST",
+                                         headers={"Authorization": f"Bearer {token()}",
+                                                  "Content-Type": "application/json"})
+            t0 = time.time()
+            with urllib.request.urlopen(req, timeout=180) as r:
+                data = json.loads(r.read())
+            for part in data["candidates"][0]["content"]["parts"]:
+                inline = part.get("inlineData")
+                if inline:
+                    path.write_bytes(base64.b64decode(inline["data"]))
+                    log(out_dir, f"ok {path.name} {time.time() - t0:.1f}s")
+                    return "ok"
+            log(out_dir, f"noimage {path.name} {json.dumps(data)[:300]}")
+        except urllib.error.HTTPError as e:
+            msg = e.read().decode()[:300]
+            log(out_dir, f"http{e.code} {path.name} {msg}")
+            if e.code in (429, 500, 503):
+                time.sleep(20 * (attempt + 1)); continue
+            return "fail"
+        except Exception as e:  # network hiccup
+            log(out_dir, f"err {path.name} {e}"); time.sleep(10)
+    return "fail"
+
+
+def log(out_dir, line):
+    print(line, flush=True)
+    with open(out_dir.parent / "render.log", "a", encoding="utf-8") as f:
+        f.write(time.strftime("%H:%M:%S ") + line + "\n")
 
 
 def main():
@@ -58,19 +97,31 @@ def main():
     ap.add_argument("--model", choices=MODELS, default="pro")
     ap.add_argument("--test", action="store_true")
     ap.add_argument("--all", action="store_true")
+    ap.add_argument("--car", help="one model slug, e.g. jeep-meridian")
+    ap.add_argument("--out", default="D:/Projects/mydrive-assets/cars")
+    ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args()
-    client = genai.Client(vertexai=True, project=PROJECT, location=LOCATION)
+    out = pathlib.Path(a.out)
     cars = {c["slug"]: c for c in CATALOG["models"]}
+    jobs = []
     if a.test:
         for key in MODELS:
             for slug in TEST_SET:
-                render(client, MODELS[key], cars[slug], "White", out_dir=pathlib.Path("out/test") / key)
-    elif a.all:
-        for car in CATALOG["models"]:
-            for colour in CATALOG["colours"]:
-                render(client, MODELS[a.model], car, colour, out_dir=pathlib.Path("out") / a.model)
+                car = cars[slug]
+                white = next((c for c in car["colours"] if "white" in c["name"].lower() and c["roof"] == "body"),
+                             car["colours"][0])
+                jobs.append((key, car, white, out / "test" / key))
+    elif a.all or a.car:
+        chosen = [cars[a.car]] if a.car else CATALOG["models"]
+        for car in chosen:
+            for colour in car["colours"]:
+                jobs.append((a.model, car, colour, out / a.model / car["slug"]))
     else:
-        ap.print_help()
+        ap.print_help(); return
+    print(f"{len(jobs)} images queued")
+    with ThreadPoolExecutor(a.workers) as ex:
+        results = list(ex.map(lambda j: render(*j), jobs))
+    print({k: results.count(k) for k in set(results)})
 
 
 if __name__ == "__main__":
